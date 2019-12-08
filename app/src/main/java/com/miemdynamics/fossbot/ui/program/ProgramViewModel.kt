@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 /**
- * A ViewModel for [ProgramFragment].
+ * A [ViewModel] for [ProgramFragment].
  */
 class ProgramViewModel : ViewModel() {
 

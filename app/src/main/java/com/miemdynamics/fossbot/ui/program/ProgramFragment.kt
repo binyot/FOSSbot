@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.miemdynamics.fossbot.R
 
 /**
- * A Fragment for interaction with predefined or user-made programs
+ * A [Fragment] for interaction with predefined or user-made programs
  */
 class ProgramFragment : Fragment() {
 

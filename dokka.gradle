@@ -1,7 +1,7 @@
 apply plugin: 'org.jetbrains.dokka-android'
 
 dokka {
-    moduleName = ""
+    moduleName = "app"
 
     outputDirectory = "$rootDir/docs"
     outputFormat = "html"
@@ -13,6 +13,11 @@ dokka {
 
     externalDocumentationLink {
         url = new URL("https://docs.oracle.com/javase/7/docs/api/")
+    }
+    externalDocumentationLink {
+        url = new URL("https://developer.android.com/reference/androidx")
+        packageListUrl =
+                new URL("https://developer.android.com/reference/androidx/package-list")
     }
 
     def appPath = new File(project.projectDir, "/src/main/java")

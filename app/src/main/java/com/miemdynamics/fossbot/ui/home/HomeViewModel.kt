@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 /**
- * A ViewModel for [HomeFragment].
+ * A [ViewModel] for [HomeFragment].
  */
 class HomeViewModel : ViewModel() {
 

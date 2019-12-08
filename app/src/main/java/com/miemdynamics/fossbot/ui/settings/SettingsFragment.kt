@@ -5,7 +5,7 @@ import androidx.preference.PreferenceFragmentCompat
 import com.miemdynamics.fossbot.R
 
 /**
- * A special root Fragment for user preferences.
+ * A special root [PreferenceFragmentCompat] for user preferences.
  */
 class SettingsFragment : PreferenceFragmentCompat() {
     /**

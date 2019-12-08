@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.miemdynamics.fossbot.R
 
 /**
- * A home Fragment.
+ * A home [Fragment].
  * Should be a Start Destination of navigation graph.
  */
 class HomeFragment : Fragment() {

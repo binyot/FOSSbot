@@ -9,7 +9,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 /**
- * A root activity.
+ * A root [AppCompatActivity].
  * Used to set up a navigation graph.
  */
 class MainActivity : AppCompatActivity() {
