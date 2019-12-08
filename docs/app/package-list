@@ -2,6 +2,10 @@ $dokka.format:html
 $dokka.linkExtension:html
 
 com.miemdynamics.fossbot
+com.miemdynamics.fossbot.data.db
+com.miemdynamics.fossbot.data.entity
+com.miemdynamics.fossbot.data.repo
+com.miemdynamics.fossbot.ui
 com.miemdynamics.fossbot.ui.home
 com.miemdynamics.fossbot.ui.program
 com.miemdynamics.fossbot.ui.settings
