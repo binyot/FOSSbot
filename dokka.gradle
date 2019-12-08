@@ -1,0 +1,44 @@
+apply plugin: 'org.jetbrains.dokka-android'
+
+dokka {
+    moduleName = ""
+
+    outputDirectory = "$rootDir/docs"
+    outputFormat = "html"
+
+    includeNonPublic = false
+    skipDeprecated = false
+    reportUndocumented = false
+    skipEmptyPackages = true
+
+    externalDocumentationLink {
+        url = new URL("https://docs.oracle.com/javase/7/docs/api/")
+    }
+
+    def appPath = new File(project.projectDir, "/src/main/java")
+    def relativeAppPath = rootDir.toPath().relativize(appPath.toPath()).toString()
+    linkMapping {
+        dir = appPath
+        url = "https://github.com/binyot/fossbot/tree/master/$relativeAppPath"
+        suffix = "#L"
+    }
+
+    Set<ProjectDependency> deps =
+            project.configurations.collectMany {
+                it.allDependencies
+            }.findAll {
+                it instanceof ProjectDependency
+            }
+
+    sourceDirs = files(deps.collect {
+        p ->
+            def path = new File(p.getDependencyProject().projectDir, "/src/main/java")
+            def relativePath = rootDir.toPath().relativize(path.toPath()).toString()
+            linkMapping {
+                dir = path
+                url = "https://github.com/binyot/fossbot/tree/master/$relativePath"
+                suffix = "#L"
+            }
+            return path
+    })
+}
