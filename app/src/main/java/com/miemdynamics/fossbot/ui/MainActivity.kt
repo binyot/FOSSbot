@@ -1,4 +1,4 @@
-package com.miemdynamics.fossbot
+package com.miemdynamics.fossbot.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.miemdynamics.fossbot.R
 
 /**
  * A root [AppCompatActivity].
@@ -27,7 +28,9 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_program, R.id.navigation_settings
+                R.id.navigation_home,
+                R.id.navigation_program,
+                R.id.navigation_settings
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
