@@ -49,7 +49,7 @@
 </BODY>
 </HTML>
 </ul>
-<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot/-main-activity/index.html"><span class="keyword">class </span><span class="identifier">MainActivity</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/androidx/appcompat/app/AppCompatActivity.html"><span class="identifier">AppCompatActivity</span></a></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.ui/-main-activity/index.html"><span class="keyword">class </span><span class="identifier">MainActivity</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/androidx/appcompat/app/AppCompatActivity.html"><span class="identifier">AppCompatActivity</span></a></a></a><br/>
 <ul>
 <HTML>
 <HEAD>
@@ -58,7 +58,54 @@
 <link rel="stylesheet" href="../style.css">
 </HEAD>
 <BODY>
-<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot/-main-activity/-init-.html"><span class="identifier">MainActivity</span><span class="symbol">(</span><span class="symbol">)</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.ui/-main-activity/-init-.html"><span class="identifier">MainActivity</span><span class="symbol">(</span><span class="symbol">)</span></a></a><br/>
+</BODY>
+</HTML>
+</ul>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Program</span></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.entity/-program/-init-.html"><span class="identifier">Program</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.entity.Program$<init>(kotlin.String, kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.miemdynamics.fossbot.data.entity.Program$<init>(kotlin.String, kotlin.String)/body">body</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.entity/-program/body.html"><span class="keyword">val </span><span class="identifier">body</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.entity/-program/name.html"><span class="keyword">val </span><span class="identifier">name</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></a></a><br/>
+</BODY>
+</HTML>
+</ul>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-dao/index.html"><span class="keyword">interface </span><span class="identifier">ProgramDao</span></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-dao/delete-all.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">deleteAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-dao/delete-by-name.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">deleteByName</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.db.ProgramDao$deleteByName(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-dao/get-all.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html"><span class="identifier">LiveData</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-dao/get-by-name.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getByName</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.db.ProgramDao$getByName(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html"><span class="identifier">LiveData</span></a><span class="symbol">&lt;</span><a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">&gt;</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-dao/insert.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">insert</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.db.ProgramDao$insert(com.miemdynamics.fossbot.data.entity.Program)/program">program</span><span class="symbol">:</span>&nbsp;<a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
+</BODY>
+</HTML>
+</ul>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-database/index.html"><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">ProgramDatabase</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/androidx/room/RoomDatabase.html"><span class="identifier">RoomDatabase</span></a></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-database/-init-.html"><span class="identifier">ProgramDatabase</span><span class="symbol">(</span><span class="symbol">)</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-database/invoke.html"><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">invoke</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.db.ProgramDatabase.Companion$invoke(android.content.Context)/context">context</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/content/Context.html"><span class="identifier">Context</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="com.miemdynamics.fossbot.data.db/-program-database/index.html"><span class="identifier">ProgramDatabase</span></a></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-database/program-dao.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">programDao</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="com.miemdynamics.fossbot.data.db/-program-dao/index.html"><span class="identifier">ProgramDao</span></a></a></a><br/>
 </BODY>
 </HTML>
 </ul>
@@ -75,6 +122,35 @@
 </BODY>
 </HTML>
 </ul>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.repo/-program-repository/index.html"><span class="keyword">interface </span><span class="identifier">ProgramRepository</span></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.repo/-program-repository/get-all.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html"><span class="identifier">LiveData</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.repo/-program-repository/insert.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">insert</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.repo.ProgramRepository$insert(com.miemdynamics.fossbot.data.entity.Program)/program">program</span><span class="symbol">:</span>&nbsp;<a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
+</BODY>
+</HTML>
+</ul>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.repo/-program-repository-impl/index.html"><span class="keyword">class </span><span class="identifier">ProgramRepositoryImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="com.miemdynamics.fossbot.data.repo/-program-repository/index.html"><span class="identifier">ProgramRepository</span></a></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.repo/-program-repository-impl/-init-.html"><span class="identifier">ProgramRepositoryImpl</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.repo.ProgramRepositoryImpl$<init>(com.miemdynamics.fossbot.data.db.ProgramDao)/programDao">programDao</span><span class="symbol">:</span>&nbsp;<a href="com.miemdynamics.fossbot.data.db/-program-dao/index.html"><span class="identifier">ProgramDao</span></a><span class="symbol">)</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.repo/-program-repository-impl/get-all.html"><span class="keyword">fun </span><span class="identifier">getAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html"><span class="identifier">LiveData</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.repo/-program-repository-impl/insert.html"><span class="keyword">fun </span><span class="identifier">insert</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.repo.ProgramRepositoryImpl$insert(com.miemdynamics.fossbot.data.entity.Program)/program">program</span><span class="symbol">:</span>&nbsp;<a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
+</BODY>
+</HTML>
+</ul>
 <a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.ui.program/-program-view-model/index.html"><span class="keyword">class </span><span class="identifier">ProgramViewModel</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/androidx/lifecycle/ViewModel.html"><span class="identifier">ViewModel</span></a></a></a><br/>
 <ul>
 <HTML>
@@ -85,6 +161,20 @@
 </HEAD>
 <BODY>
 <a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.ui.program/-program-view-model/-init-.html"><span class="identifier">ProgramViewModel</span><span class="symbol">(</span><span class="symbol">)</span></a></a><br/>
+</BODY>
+</HTML>
+</ul>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot/-robot-application/index.html"><span class="keyword">class </span><span class="identifier">RobotApplication</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/app/Application.html"><span class="identifier">Application</span></a><span class="symbol">, </span><span class="identifier">KodeinAware</span></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot/-robot-application/-init-.html"><span class="identifier">RobotApplication</span><span class="symbol">(</span><span class="symbol">)</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot/-robot-application/kodein.html"><span class="keyword">val </span><span class="identifier">kodein</span><span class="symbol">: </span><span class="identifier">LazyKodein</span></a></a><br/>
 </BODY>
 </HTML>
 </ul>
@@ -114,7 +204,7 @@
 <link rel="stylesheet" href="../style.css">
 </HEAD>
 <BODY>
-<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot/-main-activity/index.html"><span class="keyword">class </span><span class="identifier">MainActivity</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/androidx/appcompat/app/AppCompatActivity.html"><span class="identifier">AppCompatActivity</span></a></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot/-robot-application/index.html"><span class="keyword">class </span><span class="identifier">RobotApplication</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/app/Application.html"><span class="identifier">Application</span></a><span class="symbol">, </span><span class="identifier">KodeinAware</span></a></a><br/>
 <ul>
 <HTML>
 <HEAD>
@@ -123,7 +213,145 @@
 <link rel="stylesheet" href="../style.css">
 </HEAD>
 <BODY>
-<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot/-main-activity/-init-.html"><span class="identifier">MainActivity</span><span class="symbol">(</span><span class="symbol">)</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot/-robot-application/-init-.html"><span class="identifier">RobotApplication</span><span class="symbol">(</span><span class="symbol">)</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot/-robot-application/kodein.html"><span class="keyword">val </span><span class="identifier">kodein</span><span class="symbol">: </span><span class="identifier">LazyKodein</span></a></a><br/>
+</BODY>
+</HTML>
+</ul>
+</BODY>
+</HTML>
+</ul>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/index.html"><span class="keyword">package</span> <span class="identifier">com.miemdynamics.fossbot.data.db</span></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-dao/index.html"><span class="keyword">interface </span><span class="identifier">ProgramDao</span></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-dao/delete-all.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">deleteAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-dao/delete-by-name.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">deleteByName</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.db.ProgramDao$deleteByName(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-dao/get-all.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html"><span class="identifier">LiveData</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-dao/get-by-name.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getByName</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.db.ProgramDao$getByName(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html"><span class="identifier">LiveData</span></a><span class="symbol">&lt;</span><a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">&gt;</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-dao/insert.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">insert</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.db.ProgramDao$insert(com.miemdynamics.fossbot.data.entity.Program)/program">program</span><span class="symbol">:</span>&nbsp;<a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
+</BODY>
+</HTML>
+</ul>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-database/index.html"><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">ProgramDatabase</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/androidx/room/RoomDatabase.html"><span class="identifier">RoomDatabase</span></a></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-database/-init-.html"><span class="identifier">ProgramDatabase</span><span class="symbol">(</span><span class="symbol">)</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-database/invoke.html"><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">invoke</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.db.ProgramDatabase.Companion$invoke(android.content.Context)/context">context</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/content/Context.html"><span class="identifier">Context</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="com.miemdynamics.fossbot.data.db/-program-database/index.html"><span class="identifier">ProgramDatabase</span></a></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.db/-program-database/program-dao.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">programDao</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="com.miemdynamics.fossbot.data.db/-program-dao/index.html"><span class="identifier">ProgramDao</span></a></a></a><br/>
+</BODY>
+</HTML>
+</ul>
+</BODY>
+</HTML>
+</ul>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.entity/index.html"><span class="keyword">package</span> <span class="identifier">com.miemdynamics.fossbot.data.entity</span></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Program</span></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.entity/-program/-init-.html"><span class="identifier">Program</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.entity.Program$<init>(kotlin.String, kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.miemdynamics.fossbot.data.entity.Program$<init>(kotlin.String, kotlin.String)/body">body</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.entity/-program/body.html"><span class="keyword">val </span><span class="identifier">body</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.entity/-program/name.html"><span class="keyword">val </span><span class="identifier">name</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></a></a><br/>
+</BODY>
+</HTML>
+</ul>
+</BODY>
+</HTML>
+</ul>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.repo/index.html"><span class="keyword">package</span> <span class="identifier">com.miemdynamics.fossbot.data.repo</span></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.repo/-program-repository/index.html"><span class="keyword">interface </span><span class="identifier">ProgramRepository</span></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.repo/-program-repository/get-all.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html"><span class="identifier">LiveData</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.repo/-program-repository/insert.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">insert</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.repo.ProgramRepository$insert(com.miemdynamics.fossbot.data.entity.Program)/program">program</span><span class="symbol">:</span>&nbsp;<a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
+</BODY>
+</HTML>
+</ul>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.repo/-program-repository-impl/index.html"><span class="keyword">class </span><span class="identifier">ProgramRepositoryImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="com.miemdynamics.fossbot.data.repo/-program-repository/index.html"><span class="identifier">ProgramRepository</span></a></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.repo/-program-repository-impl/-init-.html"><span class="identifier">ProgramRepositoryImpl</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.repo.ProgramRepositoryImpl$<init>(com.miemdynamics.fossbot.data.db.ProgramDao)/programDao">programDao</span><span class="symbol">:</span>&nbsp;<a href="com.miemdynamics.fossbot.data.db/-program-dao/index.html"><span class="identifier">ProgramDao</span></a><span class="symbol">)</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.repo/-program-repository-impl/get-all.html"><span class="keyword">fun </span><span class="identifier">getAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html"><span class="identifier">LiveData</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></a></a><br/>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.data.repo/-program-repository-impl/insert.html"><span class="keyword">fun </span><span class="identifier">insert</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.data.repo.ProgramRepositoryImpl$insert(com.miemdynamics.fossbot.data.entity.Program)/program">program</span><span class="symbol">:</span>&nbsp;<a href="com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
+</BODY>
+</HTML>
+</ul>
+</BODY>
+</HTML>
+</ul>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.ui/index.html"><span class="keyword">package</span> <span class="identifier">com.miemdynamics.fossbot.ui</span></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.ui/-main-activity/index.html"><span class="keyword">class </span><span class="identifier">MainActivity</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/androidx/appcompat/app/AppCompatActivity.html"><span class="identifier">AppCompatActivity</span></a></a></a><br/>
+<ul>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Module Contents</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="/home/binyot/StudioProjects/fossbot/docs/app/index"><a href="com.miemdynamics.fossbot.ui/-main-activity/-init-.html"><span class="identifier">MainActivity</span><span class="symbol">(</span><span class="symbol">)</span></a></a><br/>
 </BODY>
 </HTML>
 </ul>
