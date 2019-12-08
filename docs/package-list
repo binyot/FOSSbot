@@ -1,0 +1,7 @@
+$dokka.format:html
+$dokka.linkExtension:html
+
+com.miemdynamics.fossbot
+com.miemdynamics.fossbot.ui.home
+com.miemdynamics.fossbot.ui.program
+com.miemdynamics.fossbot.ui.settings
