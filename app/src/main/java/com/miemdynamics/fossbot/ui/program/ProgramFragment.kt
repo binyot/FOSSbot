@@ -4,18 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.miemdynamics.fossbot.R
+import com.miemdynamics.fossbot.internal.viewModel
+import com.miemdynamics.fossbot.ui.decorator.MarginItemDecorator
+import kotlinx.android.synthetic.main.fragment_program.*
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
 
 /**
  * A [Fragment] for interaction with predefined or user-made programs
  */
-class ProgramFragment : Fragment() {
-
-    private lateinit var programViewModel: ProgramViewModel
+class ProgramFragment : Fragment(), KodeinAware {
+    override val kodein: Kodein by closestKodein()
+    private val viewModel: ProgramViewModel by viewModel()
 
     /**
      * @suppress
@@ -25,13 +30,25 @@ class ProgramFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        programViewModel =
-            ViewModelProviders.of(this).get(ProgramViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_program, container, false)
-        val textView: TextView = root.findViewById(R.id.text_program)
-        programViewModel.text.observe(this, Observer {
-            textView.text = it
+        super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(R.layout.fragment_program, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setupUI()
+    }
+
+    private fun setupUI() {
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.addItemDecoration(MarginItemDecorator(
+            resources.getDimension(R.dimen.default_padding).toInt()))
+        val adapter = ProgramAdapter()
+        recyclerView.adapter = adapter
+        
+        viewModel.getPrograms().observe(this,  Observer { programList ->
+            adapter.programList = programList
         })
-        return root
     }
 }

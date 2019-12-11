@@ -18,6 +18,8 @@ import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
 
+const val APP_PREF_NAME = "RobotApplication"
+
 /**
  * Used for dependency injection
  */
