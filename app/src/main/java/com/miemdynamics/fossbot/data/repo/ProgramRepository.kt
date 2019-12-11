@@ -15,5 +15,5 @@ interface ProgramRepository {
     /**
      * Insert a [program] in the database
      */
-    fun insert(program: Program)
+    suspend fun insert(program: Program)
 }
