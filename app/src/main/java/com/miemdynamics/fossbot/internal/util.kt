@@ -1,5 +1,7 @@
 package com.miemdynamics.fossbot.internal
 
+import android.content.Context
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
@@ -20,4 +22,11 @@ inline fun <reified VM : ViewModel, T> T.viewModel(): Lazy<VM> where T : KodeinA
 
 inline fun <reified VM : ViewModel, T> T.viewModel(): Lazy<VM> where T : KodeinAware, T : Fragment {
     return lazy { ViewModelProviders.of(this, direct.instance()).get(VM::class.java) }
+}
+
+/**
+ * Should be called whenever an unimplemented part of the UI is interacted with.
+ */
+fun toastNotImplemented(context: Context) {
+    Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show()
 }
