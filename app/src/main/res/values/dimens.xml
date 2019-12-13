@@ -4,4 +4,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="default_padding">8dp</dimen>
     <dimen name="float_margin_normal">16dp</dimen>
+    <dimen name="actionbar_elevation">4dp</dimen>
 </resources>

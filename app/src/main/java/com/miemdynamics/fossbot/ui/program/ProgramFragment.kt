@@ -1,13 +1,12 @@
 package com.miemdynamics.fossbot.ui.program
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.miemdynamics.fossbot.R
+import com.miemdynamics.fossbot.internal.toastNotImplemented
 import com.miemdynamics.fossbot.internal.viewModel
 import com.miemdynamics.fossbot.ui.decorator.MarginItemDecorator
 import kotlinx.android.synthetic.main.fragment_program.*
@@ -22,9 +21,11 @@ class ProgramFragment : Fragment(), KodeinAware {
     override val kodein: Kodein by closestKodein()
     private val viewModel: ProgramViewModel by viewModel()
 
-    /**
-     * @suppress
-     */
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,6 +40,25 @@ class ProgramFragment : Fragment(), KodeinAware {
         setupUI()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.program_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.actionSync -> {
+                toastNotImplemented(activity!!)
+                true
+            }
+            R.id.actionUpload -> {
+                toastNotImplemented(activity!!)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     private fun setupUI() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
@@ -46,8 +66,12 @@ class ProgramFragment : Fragment(), KodeinAware {
             resources.getDimension(R.dimen.default_padding).toInt()))
         val adapter = ProgramAdapter()
         recyclerView.adapter = adapter
-        
-        viewModel.getPrograms().observe(this,  Observer { programList ->
+
+        buttonAddProgram.setOnClickListener {
+            toastNotImplemented(context!!)
+        }
+
+        viewModel.getPrograms().observe(this, Observer { programList ->
             adapter.programList = programList
         })
     }
