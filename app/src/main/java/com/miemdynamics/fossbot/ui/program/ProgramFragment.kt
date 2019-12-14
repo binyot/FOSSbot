@@ -1,5 +1,7 @@
 package com.miemdynamics.fossbot.ui.program
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -131,6 +133,12 @@ class ProgramFragment : Fragment(), KodeinAware {
         }
 
         override fun onDestroyActionMode(mode: ActionMode?) {
+            val tracker = programListAdapter.tracker
+            tracker?.let {
+                if (it.hasSelection()) {
+                    deselectAllItems()
+                }
+            }
         }
 
         override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
@@ -140,8 +148,14 @@ class ProgramFragment : Fragment(), KodeinAware {
         override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
             return when(item?.itemId) {
                 R.id.actionDeleteSelection -> {
-                    toastNotImplemented(activity!!)
-                    mode?.finish()
+                    AlertDialog.Builder(context)
+                        .setTitle("Delete selected programs")
+                        .setMessage("Are you sure?")
+                        .setPositiveButton("Yes"
+                        ) { dialog, which -> deleteSelection() }
+                        .setNegativeButton("No"
+                        ) { dialog, which -> Unit }
+                        .show()
                     true
                 }
                 R.id.actionSelectAll -> {
@@ -154,8 +168,6 @@ class ProgramFragment : Fragment(), KodeinAware {
                     true
                 }
                 R.id.actionDeselectAll -> {
-                    programListAdapter.tracker?.clearSelection()
-                    programListAdapter.notifyDataSetChanged()
                     mode?.finish()
                     true
                 }
@@ -164,6 +176,16 @@ class ProgramFragment : Fragment(), KodeinAware {
                     false
                 }
             }
+        }
+
+        private fun deselectAllItems() {
+            programListAdapter.tracker?.clearSelection()
+            programListAdapter.notifyDataSetChanged()
+        }
+
+        private fun deleteSelection() {
+            toastNotImplemented(activity!!)
+            actionMode?.finish()
         }
     }
 }
