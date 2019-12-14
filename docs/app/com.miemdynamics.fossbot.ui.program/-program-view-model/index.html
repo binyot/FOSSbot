@@ -8,7 +8,7 @@
 <a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.miemdynamics.fossbot.ui.program</a>&nbsp;/&nbsp;<a href="./index.html">ProgramViewModel</a><br/>
 <br/>
 <h1>ProgramViewModel</h1>
-<code><span class="keyword">class </span><span class="identifier">ProgramViewModel</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/androidx/lifecycle/ViewModel.html"><span class="identifier">ViewModel</span></a></code> <a href="https://github.com/binyot/fossbot/tree/master/app/src/main/java/com/miemdynamics/fossbot/ui/program/ProgramViewModel.kt#L10">(source)</a>
+<code><span class="keyword">class </span><span class="identifier">ProgramViewModel</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/androidx/lifecycle/ViewModel.html"><span class="identifier">ViewModel</span></a></code> <a href="https://github.com/binyot/fossbot/tree/master/app/src/main/java/com/miemdynamics/fossbot/ui/program/ProgramViewModel.kt#L12">(source)</a>
 <p>A <a href="https://developer.android.com/reference/androidx/lifecycle/ViewModel.html">ViewModel</a> for <a href="../-program-fragment/index.html">ProgramFragment</a>.</p>
 <h3>Constructors</h3>
 <table>
@@ -18,9 +18,28 @@
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">ProgramViewModel</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<code><span class="identifier">ProgramViewModel</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.ui.program.ProgramViewModel$<init>(com.miemdynamics.fossbot.data.repo.ProgramRepository)/programRepository">programRepository</span><span class="symbol">:</span>&nbsp;<a href="../../com.miemdynamics.fossbot.data.repo/-program-repository/index.html"><span class="identifier">ProgramRepository</span></a><span class="symbol">)</span></code>
 <p>A <a href="https://developer.android.com/reference/androidx/lifecycle/ViewModel.html">ViewModel</a> for <a href="../-program-fragment/index.html">ProgramFragment</a>.</p>
 </td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-programs.html">getPrograms</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getPrograms</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html"><span class="identifier">LiveData</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="insert.html">insert</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">insert</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.ui.program.ProgramViewModel$insert(com.miemdynamics.fossbot.data.entity.Program)/program">program</span><span class="symbol">:</span>&nbsp;<a href="../../com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 </tbody>
 </table>
