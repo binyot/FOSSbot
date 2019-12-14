@@ -10,10 +10,12 @@
 
     <item
         android:id="@+id/actionSelectAll"
-        android:title="@string/actionSelectAll"/>
+        android:title="@string/actionSelectAll"
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/actionDeselectAll"
-        android:title="@string/actionDeselectAll"/>
+        android:title="@string/actionDeselectAll"
+        app:showAsAction="never"/>
 
 </menu>
