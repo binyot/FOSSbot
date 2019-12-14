@@ -146,11 +146,11 @@ class ProgramFragment : Fragment(), KodeinAware {
         }
 
         override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
+            val tracker = programListAdapter.tracker
             return when(item?.itemId) {
                 R.id.actionDeleteSelection -> {
                     AlertDialog.Builder(context)
-                        .setTitle("Delete selected programs")
-                        .setMessage("Are you sure?")
+                        .setMessage("Are you sure you want to delete ${tracker?.selection?.size()} items?")
                         .setPositiveButton("Yes"
                         ) { dialog, which -> deleteSelection() }
                         .setNegativeButton("No"
