@@ -1,0 +1,61 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.miemdynamics.fossbot.internal - app</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">app</a>&nbsp;/&nbsp;<a href="./index.html">com.miemdynamics.fossbot.internal</a><br/>
+<br/>
+<h2>Package com.miemdynamics.fossbot.internal</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-view-model-factory/index.html">ViewModelFactory</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ViewModelFactory</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/androidx/lifecycle/ViewModelProvider/Factory.html"><span class="identifier">Factory</span></a></code>
+<p>Used to retrieve ViewModel defined by tag with Kodein</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extensions for External Classes</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="org.kodein.di.-kodein.-builder/index.html">org.kodein.di.Kodein.Builder</a></p>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="toast-not-implemented.html">toastNotImplemented</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">toastNotImplemented</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.internal$toastNotImplemented(android.content.Context)/context">context</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/content/Context.html"><span class="identifier">Context</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Should be called whenever an unimplemented part of the UI is interacted with.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="view-model.html">viewModel</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">VM</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/androidx/lifecycle/ViewModel.html"><span class="identifier">ViewModel</span></a><span class="symbol">, </span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="view-model.html#T"><span class="identifier">T</span></a><span class="symbol">.</span><span class="identifier">viewModel</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-lazy/index.html"><span class="identifier">Lazy</span></a><span class="symbol">&lt;</span><a href="view-model.html#VM"><span class="identifier">VM</span></a><span class="symbol">&gt;</span><span class="keyword"> where </span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">KodeinAware</span><span class="symbol">, </span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/androidx/fragment/app/FragmentActivity.html"><span class="identifier">FragmentActivity</span></a></code>
+<p>Helper function for Kodein'ed <a href="https://developer.android.com/reference/androidx/lifecycle/ViewModel.html">ViewModel</a>s</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

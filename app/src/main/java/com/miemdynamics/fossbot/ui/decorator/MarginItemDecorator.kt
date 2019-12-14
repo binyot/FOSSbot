@@ -4,6 +4,9 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * Adds properly calculated margins to [RecyclerView] items
+ */
 class MarginItemDecorator(private val space: Int): RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
         outRect: Rect,
