@@ -1,15 +1,29 @@
 package com.miemdynamics.fossbot.ui.program
 
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.selection.ItemDetailsLookup
+import androidx.recyclerview.selection.ItemKeyProvider
+import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.miemdynamics.fossbot.R
 import com.miemdynamics.fossbot.data.entity.Program
 import kotlinx.android.synthetic.main.program_item.view.*
 
-class ProgramAdapter: RecyclerView.Adapter<ProgramAdapter.ProgramViewHolder>() {
+/**
+ *  A [RecyclerView.Adapter] for [Program]
+ *  Supports selection if [tracker] is set
+ */
+class ProgramAdapter: RecyclerView.Adapter<ProgramAdapter.ViewHolder>() {
+    var tracker: SelectionTracker<Long>? = null
+
+    init {
+        setHasStableIds(true)
+    }
+
     var programList: List<Program> = ArrayList()
         set(programList) {
             val diff = DiffUtil.calculateDiff(ProgramDiffCallback(field, programList))
@@ -17,24 +31,35 @@ class ProgramAdapter: RecyclerView.Adapter<ProgramAdapter.ProgramViewHolder>() {
             diff.dispatchUpdatesTo(this)
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProgramViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.program_item, parent, false)
-        return ProgramViewHolder(view)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ProgramViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val program = programList.get(position)
-        holder.textViewName.setText(program.name)
-        holder.textViewBody.setText(program.body)
+        val isSelected = tracker?.isSelected(position.toLong()) ?: false
+        holder.bind(program, isSelected)
     }
+
+    override fun getItemId(position: Int) = position.toLong()
 
     override fun getItemCount(): Int {
-        return programList.size
+        return programList.count()
     }
 
-    class ProgramViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val textViewName = view.textViewName
-        val textViewBody = view.textViewSource
+    class ViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
+        fun bind(program: Program, isSelected: Boolean = false) {
+            view.textViewName.text = program.name
+            view.textViewBody.text = program.body
+            view.isSelected = isSelected
+        }
+
+        fun getItemDetails(): ItemDetailsLookup.ItemDetails<Long> =
+            object: ItemDetailsLookup.ItemDetails<Long>() {
+                override fun getPosition(): Int = adapterPosition
+                override fun getSelectionKey(): Long? = itemId
+            }
     }
 
     class ProgramDiffCallback(
@@ -52,5 +77,32 @@ class ProgramAdapter: RecyclerView.Adapter<ProgramAdapter.ProgramViewHolder>() {
 
         override fun getOldListSize() =
             old.size
+    }
+
+    class ItemIdKeyProvider(
+        private val recyclerView: RecyclerView
+    ): ItemKeyProvider<Long>(SCOPE_MAPPED) {
+        override fun getKey(position: Int): Long? {
+            return recyclerView.adapter?.getItemId(position)
+                ?: throw IllegalStateException("RecyclerView adapter is not set")
+        }
+
+        override fun getPosition(key: Long): Int {
+            val holder = recyclerView.findViewHolderForItemId(key)
+            return holder?.layoutPosition ?: RecyclerView.NO_POSITION
+        }
+    }
+
+    class ItemLookup(
+        private val recyclerView: RecyclerView
+    ): ItemDetailsLookup<Long>() {
+        override fun getItemDetails(e: MotionEvent): ItemDetails<Long>? {
+            val view = recyclerView.findChildViewUnder(e.x, e.y)
+            if (view != null) {
+                return (recyclerView.getChildViewHolder(view) as ProgramAdapter.ViewHolder)
+                    .getItemDetails()
+            }
+            return null
+        }
     }
 }

@@ -8,17 +8,17 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.miemdynamics.fossbot.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="@string/titleHome"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_program"
         android:name="com.miemdynamics.fossbot.ui.program.ProgramFragment"
-        android:label="@string/title_program"
+        android:label="@string/titleProgram"
         tools:layout="@layout/fragment_program" />
 
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.miemdynamics.fossbot.ui.settings.SettingsFragment"
-        android:label="@string/title_settings" />
+        android:label="@string/titleSettings" />
 </navigation>

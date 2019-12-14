@@ -14,7 +14,6 @@ import com.miemdynamics.fossbot.R
  * Used to set up a navigation graph.
  */
 class MainActivity : AppCompatActivity() {
-
     /**
      * @suppress
      */
