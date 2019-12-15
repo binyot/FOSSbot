@@ -101,6 +101,7 @@ class ProgramFragment : Fragment(), KodeinAware {
         recyclerView.adapter = programListAdapter
 
         // TODO: move selection tracking inside the RecyclerViewAdapter
+        // TODO: make selection survive fragment destruction
         val tracker = SelectionTracker.Builder<Long>(
             "selection-program",
             recyclerView,

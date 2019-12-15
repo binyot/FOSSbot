@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.ViewModelProvider
 import com.miemdynamics.fossbot.data.db.ProgramDao
 import com.miemdynamics.fossbot.data.db.ProgramDatabase
+import com.miemdynamics.fossbot.data.provider.PreferenceProvider
+import com.miemdynamics.fossbot.data.provider.PreferenceProviderImpl
 import com.miemdynamics.fossbot.data.repo.ProgramRepository
 import com.miemdynamics.fossbot.data.repo.ProgramRepositoryImpl
 import com.miemdynamics.fossbot.internal.ViewModelFactory
@@ -32,6 +34,10 @@ class RobotApplication: Application(), KodeinAware {
         import(androidXModule(this@RobotApplication))
         import(dataModule)
         import(viewModelModule)
+    }
+
+    private val preferencesModule = Kodein.Module(name="preferencesModule") {
+        bind<PreferenceProvider>() with singleton { PreferenceProviderImpl(instance()) }
     }
 
     private val dataModule = Kodein.Module(name = "dataModule") {
