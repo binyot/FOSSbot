@@ -10,6 +10,9 @@
     <string name="actionDeselectAll">Deselect all</string>
     <string name="actionDeleteSelection">Delete</string>
 
+    <string name="categoryNetwork">Network</string>
+    <string name="bluetoothDevice">Bluetooth Device</string>
+
     <string name="categoryAbout">About</string>
     <string name="aboutApp">FOSSbot is a FOSS remote robot control app.</string>
 </resources>

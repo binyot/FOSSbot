@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="@string/categoryNetwork">
+
+        <ListPreference
+            android:id="@+id/bluetoothDevice"
+            app:key="BLUETOOTH_DEVICE"
+            app:title="@string/bluetoothDevice"
+            app:useSimpleSummaryProvider="true"/>
+
+    </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/categoryAbout">
 
