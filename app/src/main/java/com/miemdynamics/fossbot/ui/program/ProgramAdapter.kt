@@ -98,11 +98,10 @@ class ProgramAdapter: RecyclerView.Adapter<ProgramAdapter.ViewHolder>() {
     ): ItemDetailsLookup<Long>() {
         override fun getItemDetails(e: MotionEvent): ItemDetails<Long>? {
             val view = recyclerView.findChildViewUnder(e.x, e.y)
-            if (view != null) {
-                return (recyclerView.getChildViewHolder(view) as ProgramAdapter.ViewHolder)
+            return view?.let {
+                (recyclerView.getChildViewHolder(it) as ViewHolder)
                     .getItemDetails()
             }
-            return null
         }
     }
 }

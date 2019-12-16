@@ -1,11 +1,11 @@
 package com.miemdynamics.fossbot.ui.program
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.selection.SelectionPredicates
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StorageStrategy
@@ -16,6 +16,8 @@ import com.miemdynamics.fossbot.internal.toastNotImplemented
 import com.miemdynamics.fossbot.internal.viewModel
 import com.miemdynamics.fossbot.ui.decorator.MarginItemDecorator
 import kotlinx.android.synthetic.main.fragment_program.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -25,8 +27,8 @@ import org.kodein.di.android.x.closestKodein
  */
 class ProgramFragment : Fragment(), KodeinAware {
     override val kodein: Kodein by closestKodein()
-
     private val viewModel: ProgramViewModel by viewModel()
+
     private val programListAdapter = ProgramAdapter()
     private var actionMode: ActionMode? = null
 
@@ -56,8 +58,8 @@ class ProgramFragment : Fragment(), KodeinAware {
         return inflater.inflate(R.layout.fragment_program, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupUI()
     }
 

@@ -10,6 +10,9 @@ import com.miemdynamics.fossbot.data.repo.ProgramRepository
 import com.miemdynamics.fossbot.data.repo.ProgramRepositoryImpl
 import com.miemdynamics.fossbot.internal.ViewModelFactory
 import com.miemdynamics.fossbot.internal.bindViewModel
+import com.miemdynamics.fossbot.network.BluetoothConnection
+import com.miemdynamics.fossbot.network.BluetoothConnectionImpl
+import com.miemdynamics.fossbot.ui.home.HomeViewModel
 import com.miemdynamics.fossbot.ui.program.ProgramViewModel
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -32,12 +35,18 @@ class RobotApplication: Application(), KodeinAware {
      */
     override val kodein by Kodein.lazy {
         import(androidXModule(this@RobotApplication))
+        import(networkModule)
         import(dataModule)
+        import(preferencesModule)
         import(viewModelModule)
     }
 
     private val preferencesModule = Kodein.Module(name="preferencesModule") {
         bind<PreferenceProvider>() with singleton { PreferenceProviderImpl(instance()) }
+    }
+
+    private val networkModule = Kodein.Module(name="networkModule") {
+        bind<BluetoothConnection>() with singleton { BluetoothConnectionImpl() }
     }
 
     private val dataModule = Kodein.Module(name = "dataModule") {
@@ -49,6 +58,9 @@ class RobotApplication: Application(), KodeinAware {
     private val viewModelModule = Kodein.Module(name = "viewModelModule") {
         bind<ViewModelProvider.Factory>() with singleton {
             ViewModelFactory(kodein.direct)
+        }
+        bindViewModel<HomeViewModel>() with provider {
+            HomeViewModel(instance(), instance())
         }
         bindViewModel<ProgramViewModel>() with provider {
             ProgramViewModel(instance())

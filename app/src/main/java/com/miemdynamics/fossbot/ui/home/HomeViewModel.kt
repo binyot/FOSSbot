@@ -1,20 +1,18 @@
 package com.miemdynamics.fossbot.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.content.SharedPreferences
+import androidx.lifecycle.*
+import com.miemdynamics.fossbot.data.provider.PreferenceProvider
+import com.miemdynamics.fossbot.internal.BLUETOOTH_DEVICE
+import com.miemdynamics.fossbot.network.BluetoothConnection
+import kotlinx.coroutines.launch
 
 /**
  * A [ViewModel] for [HomeFragment].
  */
-class HomeViewModel : ViewModel() {
+class HomeViewModel(
+    val preferenceProvider: PreferenceProvider,
+    val btConnection: BluetoothConnection
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-
-    /**
-     * @suppress
-     */
-    val text: LiveData<String> = _text
 }
