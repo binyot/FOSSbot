@@ -11,7 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
 import com.miemdynamics.fossbot.R
 import com.miemdynamics.fossbot.internal.viewModel
-import com.miemdynamics.fossbot.network.BluetoothConnection
+import com.miemdynamics.fossbot.network.connection.BluetoothConnection
+import com.miemdynamics.fossbot.network.connection.BluetoothTarget
+import com.miemdynamics.fossbot.network.service.RobotService
+import com.miemdynamics.fossbot.network.service.RobotServiceImpl
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.launch
 import org.kodein.di.Kodein
@@ -40,47 +43,32 @@ class HomeFragment : Fragment(), KodeinAware {
     }
 
     private fun setupUI() {
-        val btConnection = viewModel.btConnection
-        btConnection.liveState.observe(this, Observer {
-            textViewReceived.text = it.toString()
-            buttonConnect.isActivated = (it !is BluetoothConnection.State.Connecting)
+        val service = viewModel.robotService
+        service.liveState.observe(this, Observer {
+            buttonConnect.isActivated = (it !is RobotService.State.Connecting)
             buttonConnect.text = when(it) {
-                is BluetoothConnection.State.Connected -> "Disconnect"
-                is BluetoothConnection.State.Disconnected -> "Connect"
-                is BluetoothConnection.State.Connecting -> "Connecting..."
+                is RobotService.State.Connected -> "Disconnect"
+                is RobotService.State.Disconnecting -> "Disconnecting..."
+                is RobotService.State.Disconnected -> "Connect"
+                is RobotService.State.Connecting -> "Connecting..."
             }
         })
         buttonConnect.setOnClickListener {
             val device = viewModel.preferenceProvider.getBluetoothDevice()
-            val state = btConnection.liveState.value
+            val state = service.liveState.value
             when(state) {
-                is BluetoothConnection.State.Connected -> {
+                is RobotService.State.Connected -> {
                     viewModel.viewModelScope.launch {
-                        btConnection.disconnect()
+                        service.disconnect()
                     }
                 }
-                is BluetoothConnection.State.Disconnected -> {
+                is RobotService.State.Disconnected -> {
                     device?.let {
                         viewModel.viewModelScope.launch {
-                            btConnection.connect(device)
+                            service.connect(BluetoothTarget(device))
                         }
                     } ?: Toast.makeText(context, "No device selected", Toast.LENGTH_SHORT).show()
                 }
-            }
-        }
-        buttonSend.setOnClickListener {
-            val state = btConnection.liveState.value
-            when(state) {
-                is BluetoothConnection.State.Connected -> {
-                    viewModel.viewModelScope.launch {
-                        val buffer = editTextSend.text
-                            .toString()
-                            .toByteArray(charset("ASCII"))
-                        Log.d("spp", "writing $buffer")
-                        btConnection.write(buffer)
-                    }
-                }
-                else -> Toast.makeText(context, "Cannot send the message", Toast.LENGTH_SHORT).show()
             }
         }
     }
