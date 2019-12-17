@@ -10,8 +10,10 @@ import com.miemdynamics.fossbot.data.repo.ProgramRepository
 import com.miemdynamics.fossbot.data.repo.ProgramRepositoryImpl
 import com.miemdynamics.fossbot.internal.ViewModelFactory
 import com.miemdynamics.fossbot.internal.bindViewModel
-import com.miemdynamics.fossbot.network.BluetoothConnection
-import com.miemdynamics.fossbot.network.BluetoothConnectionImpl
+import com.miemdynamics.fossbot.network.connection.BluetoothConnection
+import com.miemdynamics.fossbot.network.connection.Connection
+import com.miemdynamics.fossbot.network.service.RobotService
+import com.miemdynamics.fossbot.network.service.RobotServiceImpl
 import com.miemdynamics.fossbot.ui.home.HomeViewModel
 import com.miemdynamics.fossbot.ui.program.ProgramViewModel
 import org.kodein.di.Kodein
@@ -46,7 +48,8 @@ class RobotApplication: Application(), KodeinAware {
     }
 
     private val networkModule = Kodein.Module(name="networkModule") {
-        bind<BluetoothConnection>() with singleton { BluetoothConnectionImpl() }
+        bind<Connection>() with provider { BluetoothConnection() }
+        bind<RobotService>() with singleton { RobotServiceImpl(instance()) }
     }
 
     private val dataModule = Kodein.Module(name = "dataModule") {

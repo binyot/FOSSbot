@@ -1,0 +1,3 @@
+package com.miemdynamics.fossbot.network.connection
+
+interface ConnectionTarget
