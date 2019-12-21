@@ -37,13 +37,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Received:"/>
+            android:text="State:"/>
 
         <TextView
-            android:id="@+id/textViewReceived"
+            android:id="@+id/textViewState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="default text"/>
+            android:text="disconnected"/>
 
     </LinearLayout>
 

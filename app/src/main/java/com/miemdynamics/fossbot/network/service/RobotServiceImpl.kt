@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import com.miemdynamics.fossbot.network.connection.Connection
 import com.miemdynamics.fossbot.network.connection.ConnectionTarget
 import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
 
 class RobotServiceImpl(
     private val connection: Connection
@@ -19,6 +21,12 @@ class RobotServiceImpl(
 
     private val _liveState = MutableLiveData<RobotService.State>(state)
     override val liveState: LiveData<RobotService.State> = _liveState
+
+    override val inputStream: InputStream
+        get() = connection.inputStream
+
+    override val outputStream: OutputStream
+        get() = connection.outputStream
 
     override suspend fun connect(target: ConnectionTarget) {
         check(state is RobotService.State.Disconnected) { "Can only connect when disconnected" }
