@@ -2,6 +2,7 @@ package com.miemdynamics.fossbot.network.connection
 
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
@@ -10,7 +11,7 @@ import java.io.OutputStream
 import java.lang.IllegalStateException
 import java.util.*
 
-const val DEFAULT_UUID = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+const val DEFAULT_UUID = "DDDDDDDD-DDDD-DDDD-DDDD-DDDDDDDDDDDD"
 
 class BluetoothTarget(val device: BluetoothDevice):
     ConnectionTarget
@@ -40,6 +41,7 @@ class BluetoothConnection: Connection {
 
     private fun createSocket(device: BluetoothDevice): BluetoothSocket {
         val uuid = UUID.fromString(DEFAULT_UUID)
+        Log.d("BTC", device.uuids.map { it.uuid.toString() }.joinToString("\n"))
         return device.createRfcommSocketToServiceRecord(uuid)
     }
 }

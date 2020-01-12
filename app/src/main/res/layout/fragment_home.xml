@@ -1,50 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:stretchColumns="*"
+    android:measureWithLargestChild="false"
+    android:layout_gravity="center_vertical">
 
-    <LinearLayout
+    <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical">
 
-        <Button
-            android:id="@+id/buttonConnect"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CONNECT"/>
+            android:text="@string/bluetooth"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:gravity="start"/>
 
-        <Button
-            android:id="@+id/buttonSend"
+        <TextView
+            android:id="@+id/textViewBtState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SEND"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="Disconnected"
+            android:gravity="end"/>
 
+        <Button
+            android:id="@+id/buttonBtContext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connect"/>
 
-        <EditText
-            android:id="@+id/editTextSend"
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/battery"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:gravity="start"/>
+
+        <TextView
+            android:id="@+id/textViewBattery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="100%"
+            android:gravity="end"/>
+
+        <ProgressBar
+            android:id="@+id/progressBarBattery"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-    </LinearLayout>
+    </TableRow>
 
-    <LinearLayout
+    <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="State:"/>
+            android:text="@string/temperature"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:gravity="start"/>
 
         <TextView
-            android:id="@+id/textViewState"
+            android:id="@+id/textViewTemperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="disconnected"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="100 C"
+            android:gravity="end"/>
 
-    </LinearLayout>
+        <ProgressBar
+            android:id="@+id/progressBarTemperature"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-</LinearLayout>
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id/buttonBtSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"/>
+
+        <EditText
+            android:id="@+id/editTextBtSend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_span="2"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/textViewReceived"
+            android:layout_span="3"
+            android:lines="4"
+            android:scrollbars="vertical"/>
+
+    </TableRow>
+
+</TableLayout>

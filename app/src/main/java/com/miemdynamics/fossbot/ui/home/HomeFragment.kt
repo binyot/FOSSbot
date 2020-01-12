@@ -1,6 +1,7 @@
 package com.miemdynamics.fossbot.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,21 +40,21 @@ class HomeFragment : Fragment(), KodeinAware {
     private fun setupUI() {
         val state = viewModel.connectionState
         state.observe(this, Observer {
-            buttonConnect.isActivated = (it !is RobotService.State.Connecting)
-            buttonConnect.text = when(it) {
+            buttonBtContext.isActivated = (it !is RobotService.State.Connecting)
+            buttonBtContext.text = when(it) {
                 is RobotService.State.Connected -> "Disconnect"
                 is RobotService.State.Disconnecting -> "Disconnecting..."
                 is RobotService.State.Disconnected -> "Connect"
                 is RobotService.State.Connecting -> "Connecting..."
             }
-            textViewState.text = when(it) {
+            textViewBtState.text = when(it) {
                 is RobotService.State.Connected -> "Connected"
                 is RobotService.State.Disconnecting -> "Disconnecting"
                 is RobotService.State.Disconnected -> "Disconnected"
                 is RobotService.State.Connecting -> "Connecting"
             }
         })
-        buttonConnect.setOnClickListener {
+        buttonBtContext.setOnClickListener {
             val target = viewModel.preferenceProvider.connectionTarget
             when(state.value) {
                 is RobotService.State.Connected -> {
@@ -66,5 +67,13 @@ class HomeFragment : Fragment(), KodeinAware {
                 }
             }
         }
+        buttonBtSend.setOnClickListener {
+            val text = editTextBtSend.text.toString()
+            Log.d("BTT", "Writing $text")
+            viewModel.write(text)
+        }
+        viewModel.receivedText.observe(this, Observer {
+            textViewReceived.append(it)
+        })
     }
 }
