@@ -4,8 +4,11 @@ $dokka.location:com.miemdynamics.fossbot.internal$bindViewModel(org.kodein.di.Ko
 com.miemdynamics.fossbot
 com.miemdynamics.fossbot.data.db
 com.miemdynamics.fossbot.data.entity
+com.miemdynamics.fossbot.data.provider
 com.miemdynamics.fossbot.data.repo
 com.miemdynamics.fossbot.internal
+com.miemdynamics.fossbot.network.connection
+com.miemdynamics.fossbot.network.service
 com.miemdynamics.fossbot.ui
 com.miemdynamics.fossbot.ui.behavior
 com.miemdynamics.fossbot.ui.decorator
