@@ -1,11 +1,10 @@
 package com.miemdynamics.fossbot.data.provider
 
 import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothDevice
 import android.content.Context
-import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import com.miemdynamics.fossbot.internal.BLUETOOTH_DEVICE
+import com.miemdynamics.fossbot.internal.RUN_PROGRAM_CONFIRM
 import com.miemdynamics.fossbot.network.connection.BluetoothTarget
 import com.miemdynamics.fossbot.network.connection.ConnectionTarget
 
@@ -20,4 +19,7 @@ class PreferenceProviderImpl(private val context: Context) : PreferenceProvider 
                 BluetoothTarget(BluetoothAdapter.getDefaultAdapter().getRemoteDevice(it))
             }
         }
+
+    override val runProgramConfirmEnabled: Boolean
+        get() = preferences.getBoolean(RUN_PROGRAM_CONFIRM, true)
 }

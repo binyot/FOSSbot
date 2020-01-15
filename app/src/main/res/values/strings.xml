@@ -17,6 +17,6 @@
     <string name="aboutApp">FOSSbot is a FOSS remote robot control app.</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="internet">Internets</string>
-    <string name="battery">Battery</string>
-    <string name="temperature">Temperature</string>
+    <string name="battery">Charge</string>
+    <string name="temperature">Temp</string>
 </resources>

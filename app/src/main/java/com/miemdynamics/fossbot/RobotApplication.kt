@@ -66,7 +66,7 @@ class RobotApplication: Application(), KodeinAware {
             HomeViewModel(instance(), instance())
         }
         bindViewModel<ProgramViewModel>() with provider {
-            ProgramViewModel(instance())
+            ProgramViewModel(instance(), instance(), instance())
         }
     }
 }

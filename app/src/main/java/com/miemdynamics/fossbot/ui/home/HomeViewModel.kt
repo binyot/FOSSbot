@@ -1,14 +1,14 @@
 package com.miemdynamics.fossbot.ui.home
 
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.miemdynamics.fossbot.data.provider.PreferenceProvider
 import com.miemdynamics.fossbot.network.service.RobotService
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.io.*
+import java.io.OutputStreamWriter
 
 /**
  * A [ViewModel] for [HomeFragment].
@@ -39,9 +39,7 @@ class HomeViewModel(
     fun write(message: String) {
         viewModelScope.launch {
             if (robotService.liveState.value is RobotService.State.Connected) {
-                val writer = OutputStreamWriter(robotService.outputStream)
-                writer.write(message + "\n")
-                writer.flush()
+                robotService.write(message)
             }
         }
     }
