@@ -8,7 +8,7 @@
 <a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.miemdynamics.fossbot.ui.home</a>&nbsp;/&nbsp;<a href="./index.html">HomeViewModel</a><br/>
 <br/>
 <h1>HomeViewModel</h1>
-<code><span class="keyword">class </span><span class="identifier">HomeViewModel</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/androidx/lifecycle/ViewModel.html"><span class="identifier">ViewModel</span></a></code> <a href="https://github.com/binyot/fossbot/tree/master/app/src/main/java/com/miemdynamics/fossbot/ui/home/HomeViewModel.kt#L10">(source)</a>
+<code><span class="keyword">class </span><span class="identifier">HomeViewModel</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/androidx/lifecycle/ViewModel.html"><span class="identifier">ViewModel</span></a></code> <a href="https://github.com/binyot/fossbot/tree/master/app/src/main/java/com/miemdynamics/fossbot/ui/home/HomeViewModel.kt#L16">(source)</a>
 <p>A <a href="https://developer.android.com/reference/androidx/lifecycle/ViewModel.html">ViewModel</a> for <a href="../-home-fragment/index.html">HomeFragment</a>.</p>
 <h3>Constructors</h3>
 <table>
@@ -18,9 +18,61 @@
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">HomeViewModel</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<code><span class="identifier">HomeViewModel</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.ui.home.HomeViewModel$<init>(com.miemdynamics.fossbot.data.provider.PreferenceProvider, com.miemdynamics.fossbot.network.service.RobotService)/preferenceProvider">preferenceProvider</span><span class="symbol">:</span>&nbsp;<a href="../../com.miemdynamics.fossbot.data.provider/-preference-provider/index.html"><span class="identifier">PreferenceProvider</span></a><span class="symbol">, </span><span class="identifier" id="com.miemdynamics.fossbot.ui.home.HomeViewModel$<init>(com.miemdynamics.fossbot.data.provider.PreferenceProvider, com.miemdynamics.fossbot.network.service.RobotService)/robotService">robotService</span><span class="symbol">:</span>&nbsp;<a href="../../com.miemdynamics.fossbot.network.service/-robot-service/index.html"><span class="identifier">RobotService</span></a><span class="symbol">)</span></code>
 <p>A <a href="https://developer.android.com/reference/androidx/lifecycle/ViewModel.html">ViewModel</a> for <a href="../-home-fragment/index.html">HomeFragment</a>.</p>
 </td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="connection-state.html">connectionState</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">connectionState</span><span class="symbol">: </span><a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html"><span class="identifier">LiveData</span></a><span class="symbol">&lt;</span><a href="../../com.miemdynamics.fossbot.network.service/-robot-service/-state/index.html"><span class="identifier">State</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="preference-provider.html">preferenceProvider</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">preferenceProvider</span><span class="symbol">: </span><a href="../../com.miemdynamics.fossbot.data.provider/-preference-provider/index.html"><span class="identifier">PreferenceProvider</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="received-text.html">receivedText</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">receivedText</span><span class="symbol">: </span><a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html"><span class="identifier">LiveData</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="connect.html">connect</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">connect</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="disconnect.html">disconnect</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">disconnect</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="write.html">write</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">write</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.ui.home.HomeViewModel$write(kotlin.String)/message">message</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 </tbody>
 </table>
