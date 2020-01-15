@@ -3,9 +3,9 @@ package com.miemdynamics.fossbot.ui.program
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.selection.SelectionPredicates
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StorageStrategy
@@ -14,10 +14,9 @@ import com.miemdynamics.fossbot.R
 import com.miemdynamics.fossbot.data.entity.Program
 import com.miemdynamics.fossbot.internal.toastNotImplemented
 import com.miemdynamics.fossbot.internal.viewModel
+import com.miemdynamics.fossbot.network.service.RobotService
 import com.miemdynamics.fossbot.ui.decorator.MarginItemDecorator
 import kotlinx.android.synthetic.main.fragment_program.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -31,6 +30,25 @@ class ProgramFragment : Fragment(), KodeinAware {
 
     private val programListAdapter = ProgramAdapter()
     private var actionMode: ActionMode? = null
+
+    private fun runProgram(program: Program) {
+        when(viewModel.connectionState.value) {
+            is RobotService.State.Connected -> {
+                if (viewModel.runProgramConfirmEnabled) {
+                    AlertDialog.Builder(context)
+                        .setMessage("Run program ${program.name}?")
+                        .setPositiveButton("Yes")
+                        { dialog, which -> viewModel.runProgram(program) }
+                        .setNegativeButton("No")
+                        { dialog, which -> Unit }
+                        .show()
+                } else {
+                    viewModel.runProgram(program)
+                }
+            }
+            else -> Toast.makeText(context, "No connection", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     /**
      * Should be called when selection mode is enabled
@@ -101,6 +119,10 @@ class ProgramFragment : Fragment(), KodeinAware {
         recyclerView.addItemDecoration(MarginItemDecorator(
             resources.getDimension(R.dimen.default_padding).toInt()))
         recyclerView.adapter = programListAdapter
+
+        programListAdapter.onItemClick = { program ->
+            runProgram(program)
+        }
 
         // TODO: move selection tracking inside the RecyclerViewAdapter
         // TODO: make selection survive fragment destruction

@@ -20,6 +20,8 @@ import kotlinx.android.synthetic.main.program_item.view.*
 class ProgramAdapter: RecyclerView.Adapter<ProgramAdapter.ViewHolder>() {
     var tracker: SelectionTracker<Long>? = null
 
+    var onItemClick: ((Program) -> Unit)? = null
+
     init {
         setHasStableIds(true)
     }
@@ -48,7 +50,13 @@ class ProgramAdapter: RecyclerView.Adapter<ProgramAdapter.ViewHolder>() {
         return programList.count()
     }
 
-    class ViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
+        init {
+            view.setOnClickListener {
+                onItemClick?.invoke(programList[adapterPosition])
+            }
+        }
+
         fun bind(program: Program, isSelected: Boolean = false) {
             view.textViewName.text = program.name
             view.textViewBody.text = program.body

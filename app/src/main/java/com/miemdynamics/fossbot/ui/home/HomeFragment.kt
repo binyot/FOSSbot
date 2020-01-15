@@ -43,9 +43,9 @@ class HomeFragment : Fragment(), KodeinAware {
             buttonBtContext.isActivated = (it !is RobotService.State.Connecting)
             buttonBtContext.text = when(it) {
                 is RobotService.State.Connected -> "Disconnect"
-                is RobotService.State.Disconnecting -> "Disconnecting..."
+                is RobotService.State.Disconnecting -> "Disconnect..."
                 is RobotService.State.Disconnected -> "Connect"
-                is RobotService.State.Connecting -> "Connecting..."
+                is RobotService.State.Connecting -> "Connecting"
             }
             textViewBtState.text = when(it) {
                 is RobotService.State.Connected -> "Connected"

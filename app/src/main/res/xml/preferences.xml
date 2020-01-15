@@ -2,6 +2,14 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory app:title="Confirmation dialogs">
+
+        <CheckBoxPreference app:title="Run program"
+            app:key="RUN_PROGRAM_CONFIRM"
+            app:defaultValue="true"/>
+
+    </PreferenceCategory>
+
     <PreferenceCategory app:title="@string/categoryNetwork">
 
         <ListPreference
