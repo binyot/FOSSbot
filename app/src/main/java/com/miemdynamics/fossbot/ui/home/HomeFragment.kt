@@ -68,11 +68,16 @@ class HomeFragment : Fragment(), KodeinAware {
             }
         }
         buttonBtSend.setOnClickListener {
-            val text = editTextBtSend.text.toString()
-            viewModel.write(text)
+            when(state.value) {
+                is RobotService.State.Connected -> {
+                    val text = editTextBtSend.text.toString()
+                    viewModel.write(text)
+                }
+                else -> Toast.makeText(context, "No connection", Toast.LENGTH_SHORT).show()
+            }
         }
         viewModel.receivedText.observe(this, Observer {
-            textViewReceived.append(it)
+            textViewReceived.append(it + "\n")
         })
     }
 }
