@@ -23,30 +23,23 @@ class RobotServiceImpl(
     private val _liveState = MutableLiveData<RobotService.State>(state)
     override val liveState: LiveData<RobotService.State> = _liveState
 
-    private val scope = CoroutineScope(
-        Job() + Dispatchers.IO
-    )
-
     override suspend fun connect(target: ConnectionTarget) {
         check(state is RobotService.State.Disconnected) { "Can only connect when disconnected" }
         state = RobotService.State.Connecting()
         state = try {
             connection.connect(target)
-            scope.launch {
+            GlobalScope.launch {
+                Log.d("BTC", "Started reader worker")
+                val reader = InputStreamReader(connection.inputStream)
                 try {
-                    val reader = InputStreamReader(connection.inputStream)
-                    try {
-                        reader.forEachLine { line ->
-                            // Process socket's input here
-                            Log.d("BTC", "Received \"$line\"")
-                        }
-                    } catch (e: IOException) {
-                        Log.d("BTC", "socket input stream ended")
+                    reader.forEachLine { line ->
+                        // Process socket's input here
+                        Log.d("BTC", "Received \"$line\"")
                     }
-                    Log.d("BTC", "Reader worker coroutine died peacefully")
-                } finally {
-                    Log.d("BTC", "Reader worker coroutine cancelled")
+                } catch (e: IOException) {
+                    Log.d("BTC", "Socket input stream ended")
                 }
+                Log.d("BTC", "Reader worker died")
             }
             RobotService.State.Connected()
         } catch (e: IOException) {
@@ -59,7 +52,6 @@ class RobotServiceImpl(
                 || state !is RobotService.State.Disconnecting) { "Already disconnected" }
         state = RobotService.State.Disconnecting()
         try {
-            scope.cancel()
             connection.close()
         } finally {
             state = RobotService.State.Disconnected(RobotService.DisconnectedBy.Client)
@@ -70,6 +62,7 @@ class RobotServiceImpl(
         check(state is RobotService.State.Connected) {"Cannot write while not connected"}
         try {
             val writer = OutputStreamWriter(connection.outputStream)
+            Log.d("BTC", "Writing $string")
             writer.write(string + if (appendNewLine) "\n" else "")
             writer.flush()
         } catch (e: IOException) {
