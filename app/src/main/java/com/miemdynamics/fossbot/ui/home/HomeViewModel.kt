@@ -19,6 +19,12 @@ class HomeViewModel(
 ) : ViewModel() {
     val connectionState = robotService.liveState
 
+    init {
+        robotService.onReadLine = {
+            _receivedText.postValue(it)
+        }
+    }
+
     fun connect() {
         val target = preferenceProvider.connectionTarget
         checkNotNull(target) { "Connection target is null" }

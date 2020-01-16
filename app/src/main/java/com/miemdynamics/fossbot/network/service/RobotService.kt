@@ -38,6 +38,8 @@ interface RobotService {
      */
     suspend fun write(string: String, appendNewLine: Boolean = true)
 
+    var onReadLine: ((String) -> Unit)?
+
     sealed class State {
         class Disconnected(val reason: DisconnectedBy): State()
         class Disconnecting: State()

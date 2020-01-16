@@ -23,6 +23,8 @@ class RobotServiceImpl(
     private val _liveState = MutableLiveData<RobotService.State>(state)
     override val liveState: LiveData<RobotService.State> = _liveState
 
+    override var onReadLine: ((String) -> Unit)? = null
+
     override suspend fun connect(target: ConnectionTarget) {
         check(state is RobotService.State.Disconnected) { "Can only connect when disconnected" }
         state = RobotService.State.Connecting()
@@ -35,6 +37,8 @@ class RobotServiceImpl(
                     reader.forEachLine { line ->
                         // Process socket's input here
                         Log.d("BTC", "Received \"$line\"")
+                        onReadLine?.invoke(line)
+                            ?: Log.d("BTC", "No readLine callback")
                     }
                 } catch (e: IOException) {
                     Log.d("BTC", "Socket input stream ended")
