@@ -69,7 +69,6 @@ class HomeFragment : Fragment(), KodeinAware {
         }
         buttonBtSend.setOnClickListener {
             val text = editTextBtSend.text.toString()
-            Log.d("BTT", "Writing $text")
             viewModel.write(text)
         }
         viewModel.receivedText.observe(this, Observer {
