@@ -31,6 +31,25 @@ class ProgramFragment : Fragment(), KodeinAware {
     private val programListAdapter = ProgramAdapter()
     private var actionMode: ActionMode? = null
 
+    private fun startSelectMode() {
+        actionMode = activity?.startActionMode(selectModeCallbacks)
+        actionMode?.title = "Select"
+        viewModel.selectModeEnabled = true
+    }
+
+    /**
+     * Call this to prevent lingering ActionMode
+     */
+    private fun destroyActionMode() {
+        actionMode?.finish()
+        actionMode = null
+    }
+
+    private fun stopSelectMode() {
+        destroyActionMode()
+        viewModel?.selectModeEnabled = false
+    }
+
     private fun runProgram(program: Program) {
         when(viewModel.connectionState.value) {
             is RobotService.State.Connected -> {
@@ -55,7 +74,7 @@ class ProgramFragment : Fragment(), KodeinAware {
      * TODO: make this a callback interface
      */
     private fun onItemsSelected() {
-        actionMode = activity?.startActionMode(actionModeCallbacks)
+        actionMode = activity?.startActionMode(selectModeCallbacks)
     }
 
     private fun onItemsDeselected() {
@@ -65,6 +84,18 @@ class ProgramFragment : Fragment(), KodeinAware {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (viewModel.selectModeEnabled) {
+            startSelectMode()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        destroyActionMode()
     }
 
     override fun onCreateView(
@@ -151,7 +182,7 @@ class ProgramFragment : Fragment(), KodeinAware {
         programListAdapter.tracker = tracker
     }
 
-    private val actionModeCallbacks = object: ActionMode.Callback {
+    private val selectModeCallbacks = object: ActionMode.Callback {
         override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
             mode?.menuInflater?.inflate(R.menu.program_select_menu, menu)
             return true
@@ -164,6 +195,7 @@ class ProgramFragment : Fragment(), KodeinAware {
                     deselectAllItems()
                 }
             }
+            actionMode = null
         }
 
         override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
