@@ -2,6 +2,7 @@ package com.miemdynamics.fossbot.ui.program
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -32,9 +33,15 @@ class ProgramFragment : Fragment(), KodeinAware {
     private var actionMode: ActionMode? = null
 
     private val KEY_RECYCLERVIEW_STATE = "RECYCLERVIEW_STATE"
+    private val KEY_SELECTMODE_STATE = "SELECTMODE_STATE"
+    private val KEY_SELECTMODE_PREV_STATE = "SELECTMOVE_PREV_STATE"
+    private var selectModeEnabled = false
+    private var previousSelectionState = false
+
+    private var paused = false
 
     private fun startSelectMode() {
-        viewModel.selectModeEnabled = true
+        selectModeEnabled = true
         actionMode = activity?.startActionMode(selectModeCallbacks)
         actionMode?.title = "Select"
     }
@@ -48,7 +55,7 @@ class ProgramFragment : Fragment(), KodeinAware {
     }
 
     private fun stopSelectMode() {
-        viewModel.selectModeEnabled = false
+        selectModeEnabled = false
         destroyActionMode()
     }
 
@@ -76,10 +83,12 @@ class ProgramFragment : Fragment(), KodeinAware {
      * TODO: make this a callback interface
      */
     private fun onItemsSelected() {
+        Log.d("SELECTION", "items selected")
         startSelectMode()
     }
 
     private fun onItemsDeselected() {
+        Log.d("SELECTION", "items deselected")
         stopSelectMode()
     }
 
@@ -88,16 +97,19 @@ class ProgramFragment : Fragment(), KodeinAware {
         setHasOptionsMenu(true)
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (viewModel.selectModeEnabled) {
-            startSelectMode()
-        }
+    override fun onPause() {
+        Log.d("SELECTION", "onPause")
+        super.onPause()
+        paused = true
+        destroyActionMode()
     }
 
-    override fun onPause() {
-        super.onPause()
-        destroyActionMode()
+    override fun onResume() {
+        Log.d("SELECTION", "onResume")
+        super.onResume()
+        if (selectModeEnabled) {
+            startSelectMode()
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -105,6 +117,8 @@ class ProgramFragment : Fragment(), KodeinAware {
         programListAdapter.tracker?.onSaveInstanceState(outState)
         val listState = recyclerView.layoutManager?.onSaveInstanceState()
         outState.putParcelable(KEY_RECYCLERVIEW_STATE, listState)
+        outState.putBoolean(KEY_SELECTMODE_STATE, selectModeEnabled)
+        outState.putBoolean(KEY_SELECTMODE_PREV_STATE, previousSelectionState)
     }
 
     override fun onCreateView(
@@ -118,17 +132,18 @@ class ProgramFragment : Fragment(), KodeinAware {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupUI()
 
+        Log.d("SELECTION", "restoring state")
         savedInstanceState?.let {
+            previousSelectionState = it.getBoolean(KEY_SELECTMODE_PREV_STATE, false)
+            selectModeEnabled = it.getBoolean(KEY_SELECTMODE_STATE, false)
             recyclerView
                 .layoutManager
                 ?.onRestoreInstanceState(
                     it.getParcelable(KEY_RECYCLERVIEW_STATE))
+            programListAdapter.tracker?.onRestoreInstanceState(it)
         }
-
-        programListAdapter.tracker?.onRestoreInstanceState(savedInstanceState)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -185,13 +200,13 @@ class ProgramFragment : Fragment(), KodeinAware {
 
         tracker.addObserver(object: SelectionTracker.SelectionObserver<Long>() {
             override fun onSelectionChanged() {
-                super.onSelectionChanged()
-                if (!viewModel.previousSelectionState && tracker.hasSelection()) {
+                if (!previousSelectionState && tracker.hasSelection()) {
                     onItemsSelected()
-                } else if (viewModel.previousSelectionState && !tracker.hasSelection()) {
+                } else if (!tracker.hasSelection()) {
                     onItemsDeselected()
                 }
-                viewModel.previousSelectionState = tracker.hasSelection()
+                previousSelectionState = tracker.hasSelection()
+                super.onSelectionChanged()
             }
         })
 
@@ -201,15 +216,15 @@ class ProgramFragment : Fragment(), KodeinAware {
     private val selectModeCallbacks = object: ActionMode.Callback {
         override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
             mode?.menuInflater?.inflate(R.menu.program_select_menu, menu)
+            Log.d("SELECTION", "actionMode created")
             return true
         }
 
         override fun onDestroyActionMode(mode: ActionMode?) {
-            if (!viewModel.selectModeEnabled) {
-                programListAdapter.tracker?.let {
-                    if (it.hasSelection()) {
-                        deselectAllItems()
-                    }
+            Log.d("SELECTION", "actionMode destroyed")
+            programListAdapter.tracker?.let {
+                if (!paused && it.hasSelection()) {
+                    deselectAllItems()
                 }
             }
         }
@@ -241,7 +256,7 @@ class ProgramFragment : Fragment(), KodeinAware {
                     true
                 }
                 R.id.actionDeselectAll -> {
-                    stopSelectMode()
+                    deselectAllItems()
                     true
                 }
                 else -> {
@@ -258,7 +273,6 @@ class ProgramFragment : Fragment(), KodeinAware {
 
         private fun deleteSelection() {
             toastNotImplemented(activity!!)
-            stopSelectMode()
         }
     }
 }
