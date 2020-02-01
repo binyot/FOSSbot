@@ -31,10 +31,12 @@ class ProgramFragment : Fragment(), KodeinAware {
     private val programListAdapter = ProgramAdapter()
     private var actionMode: ActionMode? = null
 
+    private val KEY_RECYCLERVIEW_STATE = "RECYCLERVIEW_STATE"
+
     private fun startSelectMode() {
+        viewModel.selectModeEnabled = true
         actionMode = activity?.startActionMode(selectModeCallbacks)
         actionMode?.title = "Select"
-        viewModel.selectModeEnabled = true
     }
 
     /**
@@ -46,8 +48,8 @@ class ProgramFragment : Fragment(), KodeinAware {
     }
 
     private fun stopSelectMode() {
+        viewModel.selectModeEnabled = false
         destroyActionMode()
-        viewModel?.selectModeEnabled = false
     }
 
     private fun runProgram(program: Program) {
@@ -74,11 +76,11 @@ class ProgramFragment : Fragment(), KodeinAware {
      * TODO: make this a callback interface
      */
     private fun onItemsSelected() {
-        actionMode = activity?.startActionMode(selectModeCallbacks)
+        startSelectMode()
     }
 
     private fun onItemsDeselected() {
-        actionMode?.finish()
+        stopSelectMode()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,9 +95,16 @@ class ProgramFragment : Fragment(), KodeinAware {
         }
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onPause() {
+        super.onPause()
         destroyActionMode()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        programListAdapter.tracker?.onSaveInstanceState(outState)
+        val listState = recyclerView.layoutManager?.onSaveInstanceState()
+        outState.putParcelable(KEY_RECYCLERVIEW_STATE, listState)
     }
 
     override fun onCreateView(
@@ -109,7 +118,17 @@ class ProgramFragment : Fragment(), KodeinAware {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupUI()
+
+        savedInstanceState?.let {
+            recyclerView
+                .layoutManager
+                ?.onRestoreInstanceState(
+                    it.getParcelable(KEY_RECYCLERVIEW_STATE))
+        }
+
+        programListAdapter.tracker?.onRestoreInstanceState(savedInstanceState)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -155,8 +174,6 @@ class ProgramFragment : Fragment(), KodeinAware {
             runProgram(program)
         }
 
-        // TODO: move selection tracking inside the RecyclerViewAdapter
-        // TODO: make selection survive fragment destruction
         val tracker = SelectionTracker.Builder<Long>(
             "selection-program",
             recyclerView,
@@ -167,15 +184,14 @@ class ProgramFragment : Fragment(), KodeinAware {
             .build()
 
         tracker.addObserver(object: SelectionTracker.SelectionObserver<Long>() {
-            private var previousSelectionState: Boolean = false
             override fun onSelectionChanged() {
                 super.onSelectionChanged()
-                if (!previousSelectionState && tracker.hasSelection()) {
+                if (!viewModel.previousSelectionState && tracker.hasSelection()) {
                     onItemsSelected()
-                } else if (previousSelectionState && !tracker.hasSelection()) {
+                } else if (viewModel.previousSelectionState && !tracker.hasSelection()) {
                     onItemsDeselected()
                 }
-                previousSelectionState = tracker.hasSelection()
+                viewModel.previousSelectionState = tracker.hasSelection()
             }
         })
 
@@ -189,13 +205,13 @@ class ProgramFragment : Fragment(), KodeinAware {
         }
 
         override fun onDestroyActionMode(mode: ActionMode?) {
-            val tracker = programListAdapter.tracker
-            tracker?.let {
-                if (it.hasSelection()) {
-                    deselectAllItems()
+            if (!viewModel.selectModeEnabled) {
+                programListAdapter.tracker?.let {
+                    if (it.hasSelection()) {
+                        deselectAllItems()
+                    }
                 }
             }
-            actionMode = null
         }
 
         override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
@@ -225,7 +241,7 @@ class ProgramFragment : Fragment(), KodeinAware {
                     true
                 }
                 R.id.actionDeselectAll -> {
-                    mode?.finish()
+                    stopSelectMode()
                     true
                 }
                 else -> {
@@ -242,7 +258,7 @@ class ProgramFragment : Fragment(), KodeinAware {
 
         private fun deleteSelection() {
             toastNotImplemented(activity!!)
-            actionMode?.finish()
+            stopSelectMode()
         }
     }
 }
