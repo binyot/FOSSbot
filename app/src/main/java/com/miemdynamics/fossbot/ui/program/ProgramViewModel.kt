@@ -18,8 +18,6 @@ class ProgramViewModel(
     fun getPrograms() = programRepository.getAll()
 
     val connectionState = robotService.liveState
-    var selectModeEnabled = false
-    var previousSelectionState = false
 
     fun insert(program: Program) {
         viewModelScope.launch {
