@@ -6,6 +6,7 @@ import com.miemdynamics.fossbot.data.entity.Program
 import com.miemdynamics.fossbot.data.provider.PreferenceProvider
 import com.miemdynamics.fossbot.data.repo.ProgramRepository
 import com.miemdynamics.fossbot.network.service.RobotService
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
@@ -26,13 +27,13 @@ class ProgramViewModel(
     val connectionState = robotService.liveState
 
     fun insert(program: Program) {
-        viewModelScope.launch {
+        GlobalScope.launch {
             programRepository.insert(program)
         }
     }
 
     fun addProgram() {
-        viewModelScope.launch {
+        GlobalScope.launch {
             programRepository.insert(
                 Program("inserted program #${getPrograms().await().size}",
                     "is a program that has been inserted")
@@ -41,13 +42,13 @@ class ProgramViewModel(
     }
 
     fun runProgram(program: Program) {
-        viewModelScope.launch {
+        GlobalScope.launch {
             robotService.runProgram(program)
         }
     }
 
     fun deletePrograms(programs: List<Program>) {
-        viewModelScope.launch {
+        GlobalScope.launch {
             programs.forEach {
                 programRepository.delete(it)
             }
