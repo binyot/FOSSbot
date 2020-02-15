@@ -168,13 +168,11 @@ class ProgramFragment : Fragment(), KodeinAware {
     private fun setupUI() {
         setupRecyclerView()
         buttonAddProgram.setOnClickListener {
-            // TODO: replace with actual program creation
-            viewModel.insert(
-                Program("inserted program", "is a program that has been inserted")
-            )
+            viewModel.addProgram()
         }
-        viewModel.getPrograms().observe(this, Observer { programList ->
+        viewModel.getProgramsLive().observe(this, Observer { programList ->
             programListAdapter.programList = programList
+            programListAdapter.notifyDataSetChanged()
         })
     }
 
@@ -272,7 +270,10 @@ class ProgramFragment : Fragment(), KodeinAware {
         }
 
         private fun deleteSelection() {
-            toastNotImplemented(activity!!)
+            val programs = programListAdapter.tracker?.selection
+                ?.map {programListAdapter.programList[it.toInt()]}
+                ?.let {viewModel.deletePrograms(it)}
+                .also { programListAdapter.tracker?.clearSelection() }
         }
     }
 }

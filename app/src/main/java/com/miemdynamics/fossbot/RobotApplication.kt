@@ -16,6 +16,7 @@ import com.miemdynamics.fossbot.network.service.RobotService
 import com.miemdynamics.fossbot.network.service.RobotServiceImpl
 import com.miemdynamics.fossbot.ui.home.HomeViewModel
 import com.miemdynamics.fossbot.ui.program.ProgramViewModel
+import com.miemdynamics.fossbot.ui.control.ControlViewModel
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -67,6 +68,9 @@ class RobotApplication: Application(), KodeinAware {
         }
         bindViewModel<ProgramViewModel>() with provider {
             ProgramViewModel(instance(), instance(), instance())
+        }
+        bindViewModel<ControlViewModel>() with provider {
+            ControlViewModel(instance(), instance())
         }
     }
 }

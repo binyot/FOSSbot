@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_control"
+        android:name="com.miemdynamics.fossbot.ui.control.ControlFragment"
+        android:label="ControlFragment"
+        tools:layout="@layout/fragment_control" />
+
+    <fragment
         android:id="@+id/navigation_program"
         android:name="com.miemdynamics.fossbot.ui.program.ProgramFragment"
         android:label="@string/titleProgram"

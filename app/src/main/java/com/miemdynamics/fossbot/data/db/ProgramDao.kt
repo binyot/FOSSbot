@@ -21,10 +21,16 @@ interface ProgramDao {
     suspend fun insert(program: Program)
 
     /**
+     * @return a live list of all programs in the database
+     */
+    @Query("select * from program_table")
+    fun getAllLive(): LiveData<List<Program>>
+
+    /**
      * @return a list of all programs in the database
      */
     @Query("select * from program_table")
-    fun getAll(): LiveData<List<Program>>
+    fun getAll(): List<Program>
 
     /**
      * @return a program with the [name]

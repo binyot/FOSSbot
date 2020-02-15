@@ -19,4 +19,7 @@
     <string name="internet">Internets</string>
     <string name="battery">Charge</string>
     <string name="temperature">Temp</string>
+    <string name="choose_preset">Preset:</string>
+    <string name="titleControl">Control</string>
+    <string name="editMode">Edit</string>
 </resources>
