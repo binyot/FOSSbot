@@ -62,7 +62,6 @@ class ScrollAwareFABBehavior(
             dyUnconsumed,
             type
         )
-        Log.d("button", "dyConsumed = ${dyConsumed}")
         coordinatorLayout.getDependencies(target)
         val fadeDuration = 200L;
         if (dyConsumed > 0 && child.visibility == View.VISIBLE) {

@@ -83,12 +83,10 @@ class ProgramFragment : Fragment(), KodeinAware {
      * TODO: make this a callback interface
      */
     private fun onItemsSelected() {
-        Log.d("SELECTION", "items selected")
         startSelectMode()
     }
 
     private fun onItemsDeselected() {
-        Log.d("SELECTION", "items deselected")
         stopSelectMode()
     }
 
@@ -98,14 +96,12 @@ class ProgramFragment : Fragment(), KodeinAware {
     }
 
     override fun onPause() {
-        Log.d("SELECTION", "onPause")
         super.onPause()
         paused = true
         destroyActionMode()
     }
 
     override fun onResume() {
-        Log.d("SELECTION", "onResume")
         super.onResume()
         if (selectModeEnabled) {
             startSelectMode()
@@ -134,7 +130,6 @@ class ProgramFragment : Fragment(), KodeinAware {
         super.onViewCreated(view, savedInstanceState)
         setupUI()
 
-        Log.d("SELECTION", "restoring state")
         savedInstanceState?.let {
             previousSelectionState = it.getBoolean(KEY_SELECTMODE_PREV_STATE, false)
             selectModeEnabled = it.getBoolean(KEY_SELECTMODE_STATE, false)
@@ -214,12 +209,10 @@ class ProgramFragment : Fragment(), KodeinAware {
     private val selectModeCallbacks = object: ActionMode.Callback {
         override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
             mode?.menuInflater?.inflate(R.menu.program_select_menu, menu)
-            Log.d("SELECTION", "actionMode created")
             return true
         }
 
         override fun onDestroyActionMode(mode: ActionMode?) {
-            Log.d("SELECTION", "actionMode destroyed")
             programListAdapter.tracker?.let {
                 if (!paused && it.hasSelection()) {
                     deselectAllItems()
