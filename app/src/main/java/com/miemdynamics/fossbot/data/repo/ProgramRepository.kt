@@ -8,12 +8,22 @@ import com.miemdynamics.fossbot.data.entity.Program
  */
 interface ProgramRepository {
     /**
-     * @return a list of all programs
+     * @return a live list of all programs
      */
-    fun getAll(): LiveData<List<Program>>
+    fun getAllLive(): LiveData<List<Program>>
 
     /**
-     * Insert a [program] in the database
+     * @return a list of all programs
+     */
+    suspend fun getAll(): List<Program>
+
+    /**
+     * Insert the [program] in the database
      */
     suspend fun insert(program: Program)
+
+    /**
+     * Delete the [program]
+     */
+    suspend fun delete(program: Program)
 }
