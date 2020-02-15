@@ -6,6 +6,7 @@ import com.miemdynamics.fossbot.data.entity.Program
 import com.miemdynamics.fossbot.data.repo.ProgramRepository
 import com.miemdynamics.fossbot.network.service.RobotService
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
@@ -22,7 +23,7 @@ class ControlViewModel(
         programRepository.getAll()
     }
 
-    fun runProgram(program: Program) = viewModelScope.launch(Dispatchers.IO) {
+    fun runProgram(program: Program) = GlobalScope.launch(Dispatchers.IO) {
         robotService.runProgram(program)
     }
 }
