@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
+import kotlinx.coroutines.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.direct
@@ -38,4 +39,12 @@ inline fun <reified VM : ViewModel, T> T.viewModel(): Lazy<VM> where T : KodeinA
  */
 fun toastNotImplemented(context: Context) {
     Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show()
+}
+
+fun <T> lazyPromise(scope: CoroutineScope, block: suspend CoroutineScope.() -> T): Lazy<Deferred<T>> {
+    return lazy {
+        scope.async(start = CoroutineStart.LAZY) {
+            block.invoke(this)
+        }
+    }
 }
