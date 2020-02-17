@@ -59,7 +59,8 @@ class ProgramFragment : Fragment(), KodeinAware {
     }
 
     private fun runProgram(program: Program) {
-        when(viewModel.connectionState.value) {
+        // TODO: Fix LiveData hacks
+        when(viewModel.connectionStateLive().value) {
             is RobotService.State.Connected -> {
                 if (viewModel.runProgramConfirmEnabled) {
                     AlertDialog.Builder(context)

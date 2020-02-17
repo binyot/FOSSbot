@@ -24,7 +24,7 @@ class ProgramViewModel(
         programRepository.getAll()
     }
 
-    val connectionState = robotService.liveState
+    fun connectionStateLive() = robotService.liveState
 
     fun insert(program: Program) {
         GlobalScope.launch {
