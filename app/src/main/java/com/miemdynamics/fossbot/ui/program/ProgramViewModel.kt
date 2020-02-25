@@ -32,12 +32,10 @@ class ProgramViewModel(
         }
     }
 
-    fun addProgram() {
+    fun addProgram(program: Program) {
         GlobalScope.launch {
-            programRepository.insert(
-                Program("inserted program #${getPrograms().await().size}",
-                    "is a program that has been inserted")
-            )
+            val count = getPrograms().await().size
+            programRepository.insert(program)
         }
     }
 
