@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:stretchColumns="*"
     android:measureWithLargestChild="false"
-    android:layout_gravity="center_vertical">
+    android:layout_gravity="center_vertical"
+    android:padding="8dp">
 
     <TableRow
         android:layout_width="match_parent"
@@ -54,6 +55,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:text="100%"
+            android:padding="8dp"
             android:gravity="end"/>
 
         <ProgressBar
@@ -82,7 +84,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:text="100 C"
+            android:text="100C"
+            android:padding="8dp"
             android:gravity="end"/>
 
         <ProgressBar

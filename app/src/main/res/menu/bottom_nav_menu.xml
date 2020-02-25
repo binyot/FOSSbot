@@ -7,11 +7,6 @@
         android:title="@string/titleHome" />
 
     <item
-        android:id="@+id/navigation_control"
-        android:icon="@drawable/ic_pan"
-        android:title="@string/titleControl" />
-
-    <item
         android:id="@+id/navigation_program"
         android:icon="@drawable/ic_program"
         android:title="@string/titleProgram" />
