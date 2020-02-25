@@ -66,8 +66,8 @@ class RobotServiceImpl(
         check(state is RobotService.State.Connected) {"Cannot write while not connected"}
         try {
             val writer = OutputStreamWriter(connection.outputStream)
-            Log.d("BTC", "Writing $string")
-            writer.write(string + if (appendNewLine) "\n" else "")
+            Log.d("BTC", "Writing ${try {string.toInt()} catch (e: Exception) {0x00}}")
+            writer.write(try {string.toInt()} catch (e: Exception) {0x00})
             writer.flush()
         } catch (e: IOException) {
             Log.d("BTC", "Broken pipe, setting state to Disconnected")
@@ -77,7 +77,6 @@ class RobotServiceImpl(
 
     override suspend fun runProgram(program: Program) {
         check(state is RobotService.State.Connected) { "Cannot run programs while not connected" }
-        val message = "RUN " + program.body
-        write(message)
+        write(program.body)
     }
 }
