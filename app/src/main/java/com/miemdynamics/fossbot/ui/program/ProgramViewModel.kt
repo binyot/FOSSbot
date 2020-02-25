@@ -26,30 +26,21 @@ class ProgramViewModel(
 
     fun connectionStateLive() = robotService.liveState
 
-    fun insert(program: Program) {
-        GlobalScope.launch {
-            programRepository.insert(program)
-        }
+    fun insert(program: Program) = GlobalScope.launch {
+        programRepository.insert(program)
     }
 
-    fun addProgram(program: Program) {
-        GlobalScope.launch {
-            val count = getPrograms().await().size
-            programRepository.insert(program)
-        }
+    fun addProgram(program: Program) = GlobalScope.launch {
+        programRepository.insert(program)
     }
 
-    fun runProgram(program: Program) {
-        GlobalScope.launch {
-            robotService.runProgram(program)
-        }
+    fun runProgram(program: Program) = GlobalScope.launch {
+        robotService.runProgram(program)
     }
 
-    fun deletePrograms(programs: List<Program>) {
-        GlobalScope.launch {
-            programs.forEach {
-                programRepository.delete(it)
-            }
+    fun deletePrograms(programs: List<Program>) = GlobalScope.launch {
+        programs.forEach {
+            programRepository.delete(it)
         }
     }
 

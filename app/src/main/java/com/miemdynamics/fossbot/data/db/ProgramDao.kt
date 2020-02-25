@@ -36,7 +36,7 @@ interface ProgramDao {
      * @return a program with the [name]
      */
     @Query("select * from program_table where name = :name")
-    fun getByName(name: String): LiveData<Program>
+    fun getByName(name: String): Program?
 
     /**
      * Delete all programs in the database
