@@ -17,6 +17,8 @@ class ControlViewModel(
     val presets = arrayListOf(Preset("Default"), Preset("A"), Preset("B"))
     var selectedPreset: Preset = presets.first()
 
+    fun connectionStateLive() = robotService.liveState
+
     fun getProgramsLive() = programRepository.getAllLive()
 
     fun getPrograms() = viewModelScope.async {

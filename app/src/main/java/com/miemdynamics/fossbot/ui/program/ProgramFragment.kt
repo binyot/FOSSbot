@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.selection.SelectionPredicates
@@ -17,6 +19,8 @@ import com.miemdynamics.fossbot.internal.viewModel
 import com.miemdynamics.fossbot.network.service.RobotService
 import com.miemdynamics.fossbot.ui.decorator.MarginItemDecorator
 import kotlinx.android.synthetic.main.fragment_program.*
+import kotlinx.android.synthetic.main.program_add_dialog.*
+import kotlinx.android.synthetic.main.program_add_dialog.view.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -163,7 +167,32 @@ class ProgramFragment : Fragment(), KodeinAware {
     private fun setupUI() {
         setupRecyclerView()
         buttonAddProgram.setOnClickListener {
-            viewModel.addProgram()
+            val view = layoutInflater.inflate(R.layout.program_add_dialog, null)
+            val dialog = AlertDialog.Builder(context)
+                .setView(view)
+                .setPositiveButton("Add") { dialog, which ->
+                    val name = view.editTextName.text
+                    val body = view.editTextBody.text
+                    viewModel.addProgram(
+                        Program(
+                            name.toString(),
+                            body.toString()
+                        )
+                    )
+                }
+                .setNegativeButton("Cancel") { dialog, which ->
+
+                }
+                .create()
+            val editables = listOf(view.editTextName, view.editTextBody)
+            editables.forEach {
+                it.doAfterTextChanged {
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled =
+                        editables.any { !it.text.isNullOrBlank() }
+                }
+            }
+            dialog.show()
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = false
         }
         viewModel.getProgramsLive().observe(this, Observer { programList ->
             programListAdapter.programList = programList

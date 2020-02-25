@@ -1,15 +1,19 @@
 package com.miemdynamics.fossbot.ui.control
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.miemdynamics.fossbot.R
 import com.miemdynamics.fossbot.internal.viewModel
+import com.miemdynamics.fossbot.network.service.RobotService
 import kotlinx.android.synthetic.main.dialog_control_edit.view.*
 import kotlinx.android.synthetic.main.fragment_control.*
 import kotlinx.android.synthetic.main.preset_item.view.*
@@ -99,28 +103,34 @@ class ControlFragment: Fragment(), KodeinAware {
         viewModel.selectedPreset.definitions
         viewModel.selectedPreset.definitions.forEach {
             val view = layoutInflater.inflate(R.layout.preset_item, layoutPresets, false)
-            val button = view.button
-            button.setOnTouchListener { v, event ->
-                if (!editModeEnabled) {
-                    when(event.action) {
-                        MotionEvent.ACTION_DOWN -> {
-                            it.onButtonDown?.let { viewModel.runProgram(it) }
-                            true
-                        }
-                        MotionEvent.ACTION_UP -> {
-                            it.onButtonUp?.let { viewModel.runProgram(it) }
-                            true
-                        }
-                        else -> false
-                    }
-                } else false
-            }
-            button.setOnClickListener { v ->
-                if (editModeEnabled) {
-                    showEditDialog(it, button)
-                }
-            }
+            setButtonCallbacks(view.button, it)
             layoutPresets.addView(view)
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setButtonCallbacks(button: Button, btnPreset: ButtonPreset) {
+        button.setOnTouchListener { v, event ->
+            if (!editModeEnabled && viewModel.connectionStateLive().value is RobotService.State.Connected) {
+                when(event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        btnPreset.onButtonDown?.let { viewModel.runProgram(it) }
+                        Log.d("PROGRAM", btnPreset.onButtonDown?.name ?: "null down")
+                        true
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        btnPreset.onButtonUp?.let { viewModel.runProgram(it) }
+                        Log.d("PROGRAM", btnPreset.onButtonUp?.name ?: "null up")
+                        true
+                    }
+                    else -> false
+                }
+            } else false
+        }
+        button.setOnClickListener { v ->
+            if (editModeEnabled) {
+                showEditDialog(btnPreset, button)
+            }
         }
     }
 
@@ -154,8 +164,9 @@ class ControlFragment: Fragment(), KodeinAware {
         val layout = R.layout.support_simple_spinner_dropdown_item
         val adapter = ArrayAdapter<String>(context!!, layout)
         viewLifecycleOwner.lifecycleScope.launch {
+            val programs = viewModel.getPrograms().await()
             adapter.setDropDownViewResource(layout)
-            adapter.addAll(viewModel.getPrograms().await().map { it.name })
+            adapter.addAll(programs.map { it.name })
             view.spinnerOnPressed.adapter = adapter
             view.spinnerOnReleased.adapter = adapter
             AlertDialog.Builder(context)
@@ -163,9 +174,11 @@ class ControlFragment: Fragment(), KodeinAware {
                 .setPositiveButton("Apply") { dialog, which ->
                     val onPressed = view.spinnerOnPressed.selectedItem
                     val onReleased = view.spinnerOnReleased.selectedItem
-                    val name = "${onPressed?.toString() ?: "Null"}/${onReleased?.toString()
-                        ?: "Null"}"
+                    val name = "${onPressed?.toString() ?: "null"}/${onReleased?.toString()
+                        ?: "null"}"
                     button.text = name
+                    buttonPreset.onButtonDown = programs[view.spinnerOnPressed.selectedItemPosition]
+                    buttonPreset.onButtonUp = programs[view.spinnerOnReleased.selectedItemPosition]
                 }
                 .setNegativeButton("Cancel") { dialog, which -> Unit }
                 .create()
