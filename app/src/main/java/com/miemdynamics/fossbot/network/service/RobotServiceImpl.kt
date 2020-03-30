@@ -77,7 +77,7 @@ class RobotServiceImpl(
 
     override suspend fun runProgram(program: Program) {
         check(state is RobotService.State.Connected) { "Cannot run programs while not connected" }
-        val message = "RUN " + program.body
+        val message = program.body
         write(message)
     }
 }

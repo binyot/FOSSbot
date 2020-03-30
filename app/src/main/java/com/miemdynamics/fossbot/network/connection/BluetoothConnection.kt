@@ -8,7 +8,7 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.util.*
 
-const val DEFAULT_UUID = "DDDDDDDD-DDDD-DDDD-DDDD-DDDDDDDDDDDD"
+const val DEFAULT_UUID = "00001101-0000-1000-8000-00805F9B34FB"
 
 class BluetoothTarget(val device: BluetoothDevice):
     ConnectionTarget
