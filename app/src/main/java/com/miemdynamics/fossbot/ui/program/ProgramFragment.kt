@@ -153,7 +153,7 @@ class ProgramFragment : Fragment(), KodeinAware {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.actionDownload -> {
-                toastNotImplemented(activity!!)
+                viewModel.downloadPrograms()
                 true
             }
             R.id.actionUpload -> {

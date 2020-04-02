@@ -53,5 +53,11 @@ class ProgramViewModel(
         }
     }
 
+    fun downloadPrograms() {
+        GlobalScope.launch {
+            robotService.downloadPrograms()
+        }
+    }
+
     val runProgramConfirmEnabled = preferenceProvider.runProgramConfirmEnabled
 }

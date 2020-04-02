@@ -38,8 +38,8 @@ class RobotApplication: Application(), KodeinAware {
      */
     override val kodein by Kodein.lazy {
         import(androidXModule(this@RobotApplication))
-        import(networkModule)
         import(dataModule)
+        import(networkModule)
         import(preferencesModule)
         import(viewModelModule)
     }
@@ -50,7 +50,7 @@ class RobotApplication: Application(), KodeinAware {
 
     private val networkModule = Kodein.Module(name="networkModule") {
         bind<Connection>() with provider { BluetoothConnection() }
-        bind<RobotService>() with singleton { RobotServiceImpl(instance()) }
+        bind<RobotService>() with singleton { RobotServiceImpl(instance(), instance()) }
     }
 
     private val dataModule = Kodein.Module(name = "dataModule") {

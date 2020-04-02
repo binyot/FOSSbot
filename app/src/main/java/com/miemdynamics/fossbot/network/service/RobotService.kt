@@ -38,7 +38,9 @@ interface RobotService {
      */
     suspend fun write(string: String, appendNewLine: Boolean = true)
 
-    var onReadLine: ((String) -> Unit)?
+    suspend fun downloadPrograms()
+
+    suspend fun uploadPrograms()
 
     sealed class State {
         class Disconnected(val reason: DisconnectedBy): State()
