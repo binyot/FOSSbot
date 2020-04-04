@@ -3,8 +3,6 @@ package com.miemdynamics.fossbot.network.service
 import androidx.lifecycle.LiveData
 import com.miemdynamics.fossbot.data.entity.Program
 import com.miemdynamics.fossbot.network.connection.ConnectionTarget
-import java.io.InputStream
-import java.io.OutputStream
 
 /**
  * Used to interface with a robot's service
@@ -28,19 +26,25 @@ interface RobotService {
     suspend fun disconnect()
 
     /**
-     * Sends a [program] run request.
-     */
-    suspend fun runProgram(program: Program)
-
-    /**
      * Sends given [string] as-is.
      * Should only be used for testing
      */
     suspend fun write(string: String, appendNewLine: Boolean = true)
 
-    suspend fun downloadPrograms()
+    /**
+     * Sends a [program] run request.
+     */
+    suspend fun runProgram(program: Program)
 
-    suspend fun uploadPrograms()
+    /**
+     * Sends a [program] create request
+     */
+    suspend fun uploadProgram(program: Program)
+
+    /**
+     * Sends a [program] list request, then adds programs from the list to the database
+     */
+    suspend fun downloadPrograms()
 
     sealed class State {
         class Disconnected(val reason: DisconnectedBy): State()

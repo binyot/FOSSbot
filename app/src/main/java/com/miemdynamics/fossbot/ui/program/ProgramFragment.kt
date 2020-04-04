@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.selection.SelectionPredicates
@@ -19,7 +18,6 @@ import com.miemdynamics.fossbot.internal.viewModel
 import com.miemdynamics.fossbot.network.service.RobotService
 import com.miemdynamics.fossbot.ui.decorator.MarginItemDecorator
 import kotlinx.android.synthetic.main.fragment_program.*
-import kotlinx.android.synthetic.main.program_add_dialog.*
 import kotlinx.android.synthetic.main.program_add_dialog.view.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -62,17 +60,50 @@ class ProgramFragment : Fragment(), KodeinAware {
         destroyActionMode()
     }
 
-    private fun runProgram(program: Program) {
+    private fun editProgramDialog(program: Program? = null) {
+        val view = layoutInflater.inflate(R.layout.program_add_dialog, null)
+        program ?.let {
+            view.editTextName.text.append(it.name)
+            view.editTextBody.text.append(it.body)
+            }
+        val dialog = AlertDialog.Builder(context)
+            .setView(view)
+            .setPositiveButton("Apply") { dialog, which ->
+                viewModel.addProgram(
+                    Program(
+                        view.editTextName.text.toString(),
+                        view.editTextBody.text.toString()
+                    )
+                )
+            }
+            .setNegativeButton("Cancel") { dialog, which ->
+
+            }
+            .create()
+        val editables = listOf(view.editTextName, view.editTextBody)
+        editables.forEach {
+            it.doAfterTextChanged {
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled =
+                    editables.any { !it.text.isNullOrBlank() }
+            }
+        }
+        dialog.show()
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = false
+    }
+
+    private fun runProgramDialog(program: Program) {
         // TODO: Fix LiveData hacks
         when(viewModel.connectionStateLive().value) {
             is RobotService.State.Connected -> {
                 if (viewModel.runProgramConfirmEnabled) {
                     AlertDialog.Builder(context)
                         .setMessage("Run program ${program.name}?")
-                        .setPositiveButton("Yes")
+                        .setPositiveButton("Upload")
+                        { dialog, which -> viewModel.createProgram(program) }
+                        .setNegativeButton("Run")
                         { dialog, which -> viewModel.runProgram(program) }
-                        .setNegativeButton("No")
-                        { dialog, which -> Unit }
+                        .setNeutralButton("Edit")
+                        { dialog, which -> editProgramDialog(program) }
                         .show()
                 } else {
                     viewModel.runProgram(program)
@@ -167,34 +198,9 @@ class ProgramFragment : Fragment(), KodeinAware {
     private fun setupUI() {
         setupRecyclerView()
         buttonAddProgram.setOnClickListener {
-            val view = layoutInflater.inflate(R.layout.program_add_dialog, null)
-            val dialog = AlertDialog.Builder(context)
-                .setView(view)
-                .setPositiveButton("Add") { dialog, which ->
-                    val name = view.editTextName.text
-                    val body = view.editTextBody.text
-                    viewModel.addProgram(
-                        Program(
-                            name.toString(),
-                            body.toString()
-                        )
-                    )
-                }
-                .setNegativeButton("Cancel") { dialog, which ->
-
-                }
-                .create()
-            val editables = listOf(view.editTextName, view.editTextBody)
-            editables.forEach {
-                it.doAfterTextChanged {
-                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled =
-                        editables.any { !it.text.isNullOrBlank() }
-                }
-            }
-            dialog.show()
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = false
+            editProgramDialog()
         }
-        viewModel.getProgramsLive().observe(this, Observer { programList ->
+        viewModel.getProgramsLive().observe(viewLifecycleOwner, Observer { programList ->
             programListAdapter.programList = programList
             programListAdapter.notifyDataSetChanged()
         })
@@ -209,7 +215,7 @@ class ProgramFragment : Fragment(), KodeinAware {
 
         programListAdapter.onItemClick = { program ->
             if (!selectModeEnabled) {
-                runProgram(program)
+                runProgramDialog(program)
             }
         }
 

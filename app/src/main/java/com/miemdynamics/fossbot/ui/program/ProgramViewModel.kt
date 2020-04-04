@@ -45,6 +45,19 @@ class ProgramViewModel(
         }
     }
 
+    fun createProgram(program: Program) {
+        GlobalScope.launch {
+            robotService.uploadProgram(program)
+        }
+    }
+
+    fun createAndRunProgram(program: Program) {
+        GlobalScope.launch {
+            robotService.uploadProgram(program)
+            robotService.runProgram(program)
+        }
+    }
+
     fun deletePrograms(programs: List<Program>) {
         GlobalScope.launch {
             programs.forEach {
