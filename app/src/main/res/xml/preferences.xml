@@ -18,6 +18,20 @@
             app:title="@string/bluetoothDevice"
             app:useSimpleSummaryProvider="true"/>
 
+        <EditTextPreference
+            android:id="@+id/ipAddress"
+            app:key="IP_ADDRESS"
+            app:title="IP Address"
+            app:useSimpleSummaryProvider="true"
+            android:inputType="phone"/>
+
+        <EditTextPreference
+            android:id="@+id/port"
+            app:key="PORT"
+            app:title="Port"
+            app:useSimpleSummaryProvider="true"
+            android:inputType="number"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/categoryAbout">

@@ -47,6 +47,7 @@ class RobotServiceImpl(
             }
             RobotService.State.Connected()
         } catch (e: IOException) {
+            Log.d("TCP", "Error connecting: ${e.toString()}")
             RobotService.State.Disconnected(RobotService.DisconnectedBy.Error)
         }
     }

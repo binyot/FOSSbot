@@ -12,6 +12,7 @@ import com.miemdynamics.fossbot.internal.ViewModelFactory
 import com.miemdynamics.fossbot.internal.bindViewModel
 import com.miemdynamics.fossbot.network.connection.BluetoothConnection
 import com.miemdynamics.fossbot.network.connection.Connection
+import com.miemdynamics.fossbot.network.connection.TcpConnection
 import com.miemdynamics.fossbot.network.service.RobotService
 import com.miemdynamics.fossbot.network.service.RobotServiceImpl
 import com.miemdynamics.fossbot.ui.home.HomeViewModel
@@ -49,7 +50,7 @@ class RobotApplication: Application(), KodeinAware {
     }
 
     private val networkModule = Kodein.Module(name="networkModule") {
-        bind<Connection>() with provider { BluetoothConnection() }
+        bind<Connection>() with provider { TcpConnection() }
         bind<RobotService>() with singleton { RobotServiceImpl(instance(), instance()) }
     }
 
