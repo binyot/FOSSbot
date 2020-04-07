@@ -188,7 +188,11 @@ class ProgramFragment : Fragment(), KodeinAware {
                 true
             }
             R.id.actionUpload -> {
-                toastNotImplemented(activity!!)
+                if (viewModel.connectionStateLive().value !is RobotService.State.Connected) {
+                    Toast.makeText(context, "No connection", Toast.LENGTH_SHORT).show()
+                } else {
+                    viewModel.uploadAllPrograms()
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -285,6 +289,17 @@ class ProgramFragment : Fragment(), KodeinAware {
                 }
                 R.id.actionDeselectAll -> {
                     deselectAllItems()
+                    true
+                }
+                R.id.actionUpload -> {
+                    if (viewModel.connectionStateLive().value !is RobotService.State.Connected) {
+                        Toast.makeText(context, "No connection", Toast.LENGTH_SHORT).show()
+                    } else {
+                        for (i in tracker!!.selection) {
+                            val program = programListAdapter.programList[i.toInt()]
+                            viewModel.uploadProgram(program)
+                        }
+                    }
                     true
                 }
                 else -> {

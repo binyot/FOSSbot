@@ -22,4 +22,5 @@
     <string name="choose_preset">Preset:</string>
     <string name="titleControl">Control</string>
     <string name="editMode">Edit</string>
+    <string name="upload">Upload</string>
 </resources>
