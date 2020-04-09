@@ -1,6 +1,6 @@
-$dokka.format:html
-$dokka.linkExtension:html
-$dokka.location:com.miemdynamics.fossbot.internal$bindViewModel(org.kodein.di.Kodein.Builder, kotlin.Boolean)com.miemdynamics.fossbot.internal/org.kodein.di.-kodein.-builder/bind-view-model.html
+$dokka.format:markdown
+$dokka.linkExtension:md
+$dokka.location:com.miemdynamics.fossbot.internal$bindViewModel(org.kodein.di.Kodein.Builder, kotlin.Boolean)com.miemdynamics.fossbot.internal/org.kodein.di.-kodein.-builder/bind-view-model.md
 com.miemdynamics.fossbot
 com.miemdynamics.fossbot.data.db
 com.miemdynamics.fossbot.data.entity
