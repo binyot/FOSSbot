@@ -109,7 +109,11 @@ class ProgramFragment : Fragment(), KodeinAware {
                     viewModel.runProgram(program)
                 }
             }
-            else -> Toast.makeText(context, "No connection", Toast.LENGTH_SHORT).show()
+            else -> if (viewModel.runProgramConfirmEnabled) {
+                Toast.makeText(context, "No connection", Toast.LENGTH_SHORT).show()
+            } else {
+                editProgramDialog(program)
+            }
         }
     }
 

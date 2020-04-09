@@ -1,7 +1,6 @@
 package com.miemdynamics.fossbot.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,20 +38,27 @@ class HomeFragment : Fragment(), KodeinAware {
 
     private fun setupUI() {
         val state = viewModel.connectionState
-        state.observe(this, Observer {
+        state.observe(viewLifecycleOwner, Observer {
             buttonBtContext.isActivated = (it !is RobotService.State.Connecting)
             buttonBtContext.text = when(it) {
-                is RobotService.State.Connected -> "Disconnect"
-                is RobotService.State.Disconnecting -> "Disconnect..."
-                is RobotService.State.Disconnected -> "Connect"
-                is RobotService.State.Connecting -> "Connecting"
+                is RobotService.State.Connected ->      "Disconnect"
+                is RobotService.State.Disconnecting ->  "Disconnecting"
+                is RobotService.State.Disconnected ->   "Connect"
+                is RobotService.State.Connecting ->     "Connecting"
             }
-            textViewBtState.text = when(it) {
-                is RobotService.State.Connected -> "Connected"
-                is RobotService.State.Disconnecting -> "Disconnecting"
-                is RobotService.State.Disconnected -> "Disconnected"
-                is RobotService.State.Connecting -> "Connecting"
+            val color = when(it) {
+                is RobotService.State.Connected ->      0xFF5ce1e6
+                is RobotService.State.Disconnecting ->  0xFFfff9a7
+                is RobotService.State.Disconnected ->   0xFFff5757
+                is RobotService.State.Connecting ->     0xFFfff9a7
             }
+            val tintColor = when(it) {
+                is RobotService.State.Connected ->      0xFFfff9a7
+                is RobotService.State.Disconnecting ->  0xFF5ce1e6
+                is RobotService.State.Disconnected ->   0xFFfff9a7
+                is RobotService.State.Connecting ->     0xFFff5757
+            }.toInt()
+
         })
         buttonBtContext.setOnClickListener {
             val target = viewModel.preferenceProvider.connectionTarget
@@ -67,17 +73,5 @@ class HomeFragment : Fragment(), KodeinAware {
                 }
             }
         }
-        buttonBtSend.setOnClickListener {
-            when(state.value) {
-                is RobotService.State.Connected -> {
-                    val text = editTextBtSend.text.toString()
-                    viewModel.write(text)
-                }
-                else -> Toast.makeText(context, "No connection", Toast.LENGTH_SHORT).show()
-            }
-        }
-        viewModel.receivedText.observe(this, Observer {
-            textViewReceived.append(it + "\n")
-        })
     }
 }
