@@ -1,0 +1,101 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>RobotServiceImpl - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.miemdynamics.fossbot.network.service</a>&nbsp;/&nbsp;<a href="./index.html">RobotServiceImpl</a><br/>
+<br/>
+<h1>RobotServiceImpl</h1>
+<code><span class="keyword">class </span><span class="identifier">RobotServiceImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-robot-service/index.html"><span class="identifier">RobotService</span></a></code> <a href="https://github.com/binyot/fossbot/tree/master/app/src/main/java/com/miemdynamics/fossbot/network/service/RobotServiceImpl.kt#L18">(source)</a>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">RobotServiceImpl</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.network.service.RobotServiceImpl$<init>(com.miemdynamics.fossbot.network.connection.Connection, com.miemdynamics.fossbot.data.repo.ProgramRepository)/connection">connection</span><span class="symbol">:</span>&nbsp;<a href="../../com.miemdynamics.fossbot.network.connection/-connection/index.html"><span class="identifier">Connection</span></a><span class="symbol">, </span><span class="identifier" id="com.miemdynamics.fossbot.network.service.RobotServiceImpl$<init>(com.miemdynamics.fossbot.network.connection.Connection, com.miemdynamics.fossbot.data.repo.ProgramRepository)/repository">repository</span><span class="symbol">:</span>&nbsp;<a href="../../com.miemdynamics.fossbot.data.repo/-program-repository/index.html"><span class="identifier">ProgramRepository</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="live-state.html">liveState</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">liveState</span><span class="symbol">: </span><a href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html"><span class="identifier">LiveData</span></a><span class="symbol">&lt;</span><a href="../-robot-service/-state/index.html"><span class="identifier">State</span></a><span class="symbol">&gt;</span></code>
+<p>Indicates current service connection state</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="connect.html">connect</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">connect</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.network.service.RobotServiceImpl$connect(com.miemdynamics.fossbot.network.connection.ConnectionTarget)/target">target</span><span class="symbol">:</span>&nbsp;<a href="../../com.miemdynamics.fossbot.network.connection/-connection-target.html"><span class="identifier">ConnectionTarget</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Connect to a service.
+Throws an <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-illegal-state-exception/index.html">IllegalStateException</a> unless the current state is <a href="../-robot-service/-state/-disconnected/index.html">RobotService.State.Disconnected</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="disconnect.html">disconnect</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">disconnect</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Disconnect from a service.
+Throws an <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-illegal-state-exception/index.html">IllegalStateException</a> unless the current state is <a href="../-robot-service/-state/-connected/index.html">RobotService.State.Connected</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="download-programs.html">downloadPrograms</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">downloadPrograms</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sends a <a href="#">program</a> list request, then adds programs from the list to the database</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="run-program.html">runProgram</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">runProgram</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.network.service.RobotServiceImpl$runProgram(com.miemdynamics.fossbot.data.entity.Program)/program">program</span><span class="symbol">:</span>&nbsp;<a href="../../com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sends a <a href="../-robot-service/run-program.html#com.miemdynamics.fossbot.network.service.RobotService$runProgram(com.miemdynamics.fossbot.data.entity.Program)/program">program</a> run request.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="upload-program.html">uploadProgram</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">uploadProgram</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.network.service.RobotServiceImpl$uploadProgram(com.miemdynamics.fossbot.data.entity.Program)/program">program</span><span class="symbol">:</span>&nbsp;<a href="../../com.miemdynamics.fossbot.data.entity/-program/index.html"><span class="identifier">Program</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sends a <a href="../-robot-service/upload-program.html#com.miemdynamics.fossbot.network.service.RobotService$uploadProgram(com.miemdynamics.fossbot.data.entity.Program)/program">program</a> create request</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="write.html">write</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">write</span><span class="symbol">(</span><span class="identifier" id="com.miemdynamics.fossbot.network.service.RobotServiceImpl$write(kotlin.String, kotlin.Boolean)/string">string</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.miemdynamics.fossbot.network.service.RobotServiceImpl$write(kotlin.String, kotlin.Boolean)/appendNewLine">appendNewLine</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sends given <a href="../-robot-service/write.html#com.miemdynamics.fossbot.network.service.RobotService$write(kotlin.String, kotlin.Boolean)/string">string</a> as-is.
+Should only be used for testing</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
