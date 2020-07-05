@@ -2,7 +2,6 @@ package com.miemdynamics.fossbot.network.connection
 
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
-import android.util.Log
 import kotlinx.coroutines.*
 import java.io.InputStream
 import java.io.OutputStream

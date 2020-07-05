@@ -26,11 +26,6 @@ class ProgramViewModel(
 
     fun connectionStateLive() = robotService.liveState
 
-    fun insert(program: Program) {
-        GlobalScope.launch {
-            programRepository.insert(program)
-        }
-    }
 
     fun addProgram(program: Program) {
         GlobalScope.launch {
@@ -51,10 +46,19 @@ class ProgramViewModel(
         }
     }
 
-    fun createAndRunProgram(program: Program) {
+    fun uploadAllPrograms() {
+        GlobalScope.launch {
+            // TODO: Forward uploading to service?
+            val programs = programRepository.getAll()
+            programs.forEach {
+                robotService.uploadProgram(it)
+            }
+        }
+    }
+
+    fun uploadProgram(program: Program) {
         GlobalScope.launch {
             robotService.uploadProgram(program)
-            robotService.runProgram(program)
         }
     }
 

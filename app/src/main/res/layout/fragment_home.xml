@@ -1,127 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:stretchColumns="*"
-    android:measureWithLargestChild="false"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     android:layout_gravity="center_vertical">
 
-    <TableRow
+    <Button
+        android:id="@+id/buttonBtContext"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:text="Connect"
+        style="?android:attr/borderlessButtonStyle" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/bluetooth"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:gravity="start"/>
-
-        <TextView
-            android:id="@+id/textViewBtState"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:text="Disconnected"
-            android:gravity="end"/>
-
-        <Button
-            android:id="@+id/buttonBtContext"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Connect"/>
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/battery"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:gravity="start"/>
-
-        <TextView
-            android:id="@+id/textViewBattery"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:text="100%"
-            android:gravity="end"/>
-
-        <ProgressBar
-            android:id="@+id/progressBarBattery"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/temperature"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:gravity="start"/>
-
-        <TextView
-            android:id="@+id/textViewTemperature"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:text="100 C"
-            android:gravity="end"/>
-
-        <ProgressBar
-            android:id="@+id/progressBarTemperature"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-
-    </TableRow>
-
-    <TableRow>
-        <Button
-            android:id="@+id/buttonBtSend"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Send"/>
-
-        <EditText
-            android:id="@+id/editTextBtSend"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_span="2"/>
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:id="@+id/textViewReceived"
-            android:layout_span="3"
-            android:scrollbars="vertical"
-            android:gravity="bottom"
-            android:lines="5"/>
-
-    </TableRow>
-
-</TableLayout>
+</LinearLayout>

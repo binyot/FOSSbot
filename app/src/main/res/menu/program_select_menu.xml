@@ -18,4 +18,9 @@
         android:title="@string/actionDeselectAll"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/actionUpload"
+        android:title="@string/upload"
+        app:showAsAction="never"/>
+
 </menu>

@@ -1,0 +1,5 @@
+[app](../../index.md) / [com.miemdynamics.fossbot.ui.behavior](../index.md) / [ScrollAwareFABBehavior](index.md) / [onNestedScroll](./on-nested-scroll.md)
+
+# onNestedScroll
+
+`fun onNestedScroll(coordinatorLayout: `[`CoordinatorLayout`](https://developer.android.com/reference/androidx/coordinatorlayout/widget/CoordinatorLayout.html)`, child: FloatingActionButton, target: `[`View`](https://developer.android.com/reference/android/view/View.html)`, dxConsumed: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, dyConsumed: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, dxUnconsumed: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, dyUnconsumed: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, type: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) [(source)](https://github.com/binyot/fossbot/tree/master/app/src/main/java/com/miemdynamics/fossbot/ui/behavior/ScrollAwareFABBehavior.kt#L45)

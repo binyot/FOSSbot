@@ -47,6 +47,7 @@ class RobotServiceImpl(
             }
             RobotService.State.Connected()
         } catch (e: IOException) {
+            Log.d("TCP", "Error connecting: ${e.toString()}")
             RobotService.State.Disconnected(RobotService.DisconnectedBy.Error)
         }
     }
@@ -113,11 +114,9 @@ class RobotServiceImpl(
         Log.d("RJSON", "Handling $response.type response")
         when(response) {
             is Response.ListCommands -> {
-                val names = response.names
-                Log.d("RJSON", "Downloaded commands: $names")
-                names.forEach {
-                    val program = Program(name = it, body = "")
-                    repository.insert(program)
+                val programs = response.commands
+                programs.forEach {
+                    repository.insert(it)
                 }
             }
         }
