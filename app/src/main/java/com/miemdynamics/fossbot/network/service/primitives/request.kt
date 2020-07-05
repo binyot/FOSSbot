@@ -20,7 +20,6 @@ sealed class Request {
 }
 
 fun Request.serialize(): String {
-    val configuration = JsonConfiguration.Stable
-    val json = Json(configuration = configuration)
-    return json.stringify(Request.serializer(), this)
+    val json = Json{}
+    return json.encodeToString(Request.serializer(), this)
 }

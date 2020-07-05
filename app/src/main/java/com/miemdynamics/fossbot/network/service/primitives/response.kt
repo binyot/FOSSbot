@@ -13,7 +13,6 @@ sealed class Response {
 }
 
 fun deserializeResponse(string: String): Response {
-    val configuration = JsonConfiguration.Stable
-    val json = Json(configuration = configuration)
-    return json.parse(Response.serializer(), string)
+    val json = Json{}
+    return json.decodeFromString(Response.serializer(), string)
 }

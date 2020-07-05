@@ -12,7 +12,6 @@ import com.miemdynamics.fossbot.network.service.primitives.Response
 import com.miemdynamics.fossbot.network.service.primitives.deserializeResponse
 import com.miemdynamics.fossbot.network.service.primitives.serialize
 import kotlinx.coroutines.*
-import kotlinx.serialization.json.JsonException
 import java.io.*
 
 class RobotServiceImpl(
@@ -102,8 +101,6 @@ class RobotServiceImpl(
                 GlobalScope.launch {
                     handleResponse(response)
                 }
-            } catch (e: JsonException) {
-                Log.e("RJSON", "Ill-formed response received")
             } catch (e: Exception) {
                 Log.e("RJSON", "Unknown response parsing error")
             }
